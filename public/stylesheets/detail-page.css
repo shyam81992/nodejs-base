@@ -1,0 +1,152 @@
+
+
+.navigation{
+	height:66px;
+	background-color: #212121;
+}
+
+.container{
+	width:1190px;
+}
+#logo img{
+	margin-top: 13px;
+	float: left;
+}
+
+.nav ul li{
+	display: inline block;
+	list-style-type: none;
+	float: right;
+}
+
+.nav ul{
+	
+	
+	
+}
+
+.nav li{
+	
+	color:#fff;
+	font-size: 18px;
+	font-weight: 900;
+	padding: 18px;
+}
+
+
+.txtVal:hover, .areaVal:hover {
+  background-color: #e5e5e5;
+  cursor:pointer;
+}
+
+
+#map-canvas {
+	width: 460px;
+	height: 83vh;
+	float: left;
+	}
+#side-menu{
+	width: 700px;
+	height: 665px;
+	float: right;
+}
+.list,.shortlist{
+	overflow-x: auto;
+  height: 63.5vh;
+}
+.search-container{
+	height: 130px;
+	width:691px;
+}
+
+.outer-span{
+	width: 670px;
+	height:186px;
+	  margin-left: 8px;
+}
+
+.outer-span .left{
+	width: 255px;
+	height:186px;
+	float: left;
+}
+
+.outer-span .right{
+	width: 400px;
+  height: 186px;
+  float: left;
+  margin-left: 10px;
+}
+
+.right h2{
+	  margin-top: -4px;
+	  font-size: 25px;
+  font-weight: 900;
+  font-variant: small-caps;
+}
+
+.right p{
+	font-weight: 600;
+  color: #777;
+}
+
+.right .area{
+	  display: inline-block;
+  padding: 5px 0;
+  width: 50%;
+  font-weight: 600;
+  color: #1CB798;
+  font-size: 30px;
+}
+
+.right .price{
+	  display: inline-block;
+  padding: 5px 0;
+  width: 50%;
+  font-weight: 600;
+  color: #1CB798;
+  font-size: 30px;
+}
+
+#slides_control > div{
+  height: 330px;
+}
+.slides_control img{
+  margin:0 auto;
+  width: 200%;
+}
+#slides_control {
+  //position:absolute;
+  width: 100%;
+  height: 330px;
+  //left:50%;
+  //top:20px;
+ //margin-left:-200px;
+}
+
+#slides_control .right ,#slides_control .left{
+ 
+  height: 330px;
+  
+}
+
+/* scroll bar styling for chrome */
+
+.list::-webkit-scrollbar {
+    width: 4px;
+}
+ 
+.list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.list::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+/*For autocomplete google icon removal*/
+.pac-container:after {  /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+    background-image: none !important;
+    height: 0px !important;
+}

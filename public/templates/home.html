@@ -1,0 +1,291 @@
+<div class="navigation">
+	<div class="container nav">
+		<span id="logo"><img src="../images/logo.png"></span>
+
+		<ul>
+			<li>MENU<img src="../images/icon3.png"></li>
+			<li><img src="../images/icon2.png">REGISTER</li>
+			<li><img src="../images/icon1.png">LOGIN</li>
+		</ul>
+	</div>
+</div>
+
+<div class="my-nav">
+	<div class="dropdown" style="float:left">
+	    <div class="dropdown-toggle drop" data-toggle="dropdown">CAEGORIES
+	    	<span class="caret"></span>
+		</div>
+	    <ul class="dropdown-menu" style="margin: -5px 0 0;">
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" ng-change="filterFunction1('commercial_flat')" ng-model="name1" value="commercial_flat">Coomercial Flat</span>
+	      	</span>
+	      </li>
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" ng-change="filterFunction2('business_center')" ng-model="name2" value="business_center">Busines Centers</span>
+	      	</span>
+	      </li>
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" ng-change="filterFunction3('office_space')" ng-model="name3" value="office_space">Office Space</span>
+	      	</span>
+	      </li>
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" ng-change="filterFunction4('industrial_area')" ng-model="name4" value="industrial_area">Industrial Area</span>
+	      	</span>
+	      </li>
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" ng-change="filterFunction5('housing')" ng-model="name5" value="housing">Housing</span>
+	      	</span>
+	      </li>
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" ng-change="filterFunction6('flat')" ng-model="name6" value="flat">Flat</span>
+	      	</span>
+	      </li>
+	      
+	    </ul>
+    </div>
+    <div class="dropdown" style="float:left">
+	    <div class="dropdown-toggle drop" data-toggle="dropdown">BUDGET
+	    	<span class="caret"></span>
+		</div>
+	    <ul class="dropdown-menu" style="margin: -5px 0 0;">
+	    	<li>
+	      	<span class="chkBox budget">
+	      		<span><input type="textbox" ng-model="lowerLimit" ng-change="filterFunction7()" placeholder="lower limit" style="width: 45%;"></span>
+	      		<span><input type="textbox" ng-model="upperLimit" ng-change="filterFunction7()" placeholder="upper limit" style="width: 45%;"></span>
+	      	</span>
+	      </li>
+	      <li class="min txtVal" ng-show="showMin" data-price="50000">
+	      	<span ng-click="setMinVal(5000)" style="padding: 10px;">
+	      		<span>5K </span>
+	      	</span>
+	      </li>
+	      <li class="min txtVal" ng-show="showMin" data-price="100000">
+	      	<span ng-click="setMinVal(100000)" style="padding: 10px;">
+	      		<span>100K</span>
+	      	</span>
+	      </li>
+	      <li class="min txtVal" ng-show="showMin" data-price="5000000">
+	      	<span ng-click="setMinVal(5000000)" style="padding: 10px;">
+	      		<span>5000K</span>
+	      	</span>
+	      </li>
+	      <li class="min txtVal" ng-show="showMin" data-price="10000000">
+	      	<span ng-click="setMinVal(10000000)" style="padding: 10px;">
+	      		<span>10000K</span>
+	      	</span>
+	      </li>
+	      <li class="min txtVal" ng-show="showMin" data-price="100000000">
+	      	<span ng-click="setMinVal(100000000)" style="padding: 10px;">
+	      		<span>100000K</span>
+	      	</span>
+	      </li>
+
+	      <li class="max txtVal" ng-show="showMax" style="text-align:right;" data-price="50000">
+	      	<span ng-click="setMaxVal(50000)" style="padding: 10px;">
+	      		<span>50000 </span>
+	      	</span>
+	      </li>
+	      <li class="max txtVal" ng-show="showMax" style="text-align:right;" data-price="100000">
+	      	<span ng-click="setMaxVal(100000)" style="padding: 10px;">
+	      		<span>100000</span>
+	      	</span>
+	      </li>
+	      <li class="max txtVal" ng-show="showMax" style="text-align:right;" data-price="5000000">
+	      	<span ng-click="setMaxVal(5000000)" style="padding: 10px;">
+	      		<span>5000000</span>
+	      	</span>
+	      </li>
+	      <li class="max txtVal" ng-show="showMax" style="text-align:right;" data-price="10000000">
+	      	<span ng-click="setMaxVal(10000000)" style="padding: 10px;">
+	      		<span>10000000</span>
+	      	</span>
+	      </li>
+	      <li class="max txtVal" ng-show="showMax" style="text-align:right;" data-price="100000000">
+	      	<span ng-click="setMaxVal(1000000000)" style="padding: 10px;">
+	      		<span>100000000</span>
+	      	</span>
+	      </li>
+	      
+	    </ul>
+    </div>
+    <div class="dropdown" style="float:left">
+	    <div class="dropdown-toggle drop" data-toggle="dropdown">SQUARE FEET
+	    	<span class="caret"></span>
+		</div>
+	    <ul class="dropdown-menu" style="margin: -5px 0 0;">
+
+	      <li>
+	      	<span class="chkBox squarefeet">
+	      		<span><input type="textbox" ng-model="lowerLimitSqft" ng-change="filterFunction7()" placeholder="lower limit" style="width: 45%;"></span>
+	      		<span><input type="textbox" ng-model="upperLimitSqft" ng-change="filterFunction7()" placeholder="upper limit" style="width: 45%;"></span>
+	      	</span>
+	      </li>
+	      <li class='areaVal min' ng-show="showMinSqft" data-area="1200">
+	      	<span ng-click="setMinValSqft(1200)" style="padding: 10px;">
+	      		<span>1200Sqft</span>
+	      	</span>
+	      </li>
+	      <li class='areaVal min' ng-show="showMinSqft" data-area="2000">
+	      	<span ng-click="setMinValSqft(2000)" style="padding: 10px;">
+	      		<span>2000Sqft</span>
+	      	</span>
+	      </li>
+	      <li class='areaVal min' ng-show="showMinSqft" data-area="10000">
+	      	<span ng-click="setMinValSqft(10000)" style="padding: 10px;">
+	      		<span>10000Sqft</span>
+	      	</span>
+	      </li>
+	      <li class='areaVal min' ng-show="showMinSqft" data-area="20000">
+	      	<span ng-click="setMinValSqft(20000)" style="padding: 10px;">
+	      		<span>20000Sqft</span>
+	      	</span>
+	      </li>
+
+	      <li class='areaVal max' ng-show="showMaxSqft" style="text-align:right;" data-area="1200">
+	      	<span ng-click="setMaxValSqft(1200)" style="padding: 10px;">
+	      		<span>1200Sqft</span>
+	      	</span>
+	      </li>
+	      <li class='areaVal max' ng-show="showMaxSqft" style="text-align:right;" data-area="2000">
+	      	<span ng-click="setMaxValSqft(2000)" style="padding: 10px;">
+	      		<span>2000Sqft</span>
+	      	</span>
+	      </li>
+	      <li class='areaVal max' ng-show="showMaxSqft" style="text-align:right;" data-area="10000">
+	      	<span ng-click="setMaxValSqft(10000)" style="padding: 10px;">
+	      		<span>10000Sqft</span>
+	      	</span>
+	      </li>
+	      <li class='areaVal max' ng-show="showMaxSqft" style="text-align:right;" data-area="20000">
+	      	<span ng-click="setMaxValSqft(200000)" style="padding: 10px;">
+	      		<span>20000Sqft</span>
+	      	</span>
+	      </li>
+	      
+	    </ul>
+    </div>
+    <div class="dropdown" style="float:left">
+	    <div class="dropdown-toggle drop" data-toggle="dropdown">MORE
+	    	<span class="caret"></span>
+		</div>
+	    <ul class="dropdown-menu" style="margin: -5px 0 0;">
+	      <li>
+	      	<span style="padding: 10px;">
+	      		<span><input type="checkbox" class="others" name="name"> Others </span>
+	      	</span>
+	      </li>
+	    </ul>
+    </div>
+</div>
+<div class="container">
+	<div id="map-canvas"></div>
+	<div id="side-menu" ng-show="sidemenu">
+		<div class="search-container">
+			<div style="margin-top:28px;">
+				<span style="margin-left: 8px;"><img src="../images/search-location.png"></span><span style="margin-left: 5px;"><img src="../images/sort.png"></span>
+			</div>
+			<div style="margin-top:28px;">
+				<span ng-style="{'background-color': backgroundCol}" style="width:335px;text-align:center;float:left;color:#fff;margin-left:8px;padding: 3px 0;font-size: 22px;">
+					<a ng-click="showlist()"><p>RESULTS({{length}})</p></a>
+				</span>
+				<span ng-style="{'background-color': backgroundCol2}" style="width:335px;text-align:center;margin-left:5px;padding: 5px 0;font-size: 22px;float:left;">
+					<a ng-click="showShortlist()"><p>SORTLISTED</p></a>
+				</span>
+			</div>
+		</div>
+
+
+		<div class="list" ng-show="list">
+			<div class="outer-span" ng-repeat="data in dataList" ng-mouseover="showInfowFindow(data._id)" ng-mouseleave="hideInfoWindow(data._id)">
+				<div class="left">
+					<a href="" ng-click="showDetails($index)"><img style="width:250px;" src="images/pic.jpg"></a>
+				</div>
+				<div class="right">
+					<h2>{{data.Total_Area_in_Sq_Ft__c}}Sq Ft property at {{data.Location__c}} for Sale</h2>
+					<p>{{data.Location__c}}&nbsp;&nbsp;{{data.City__c}}&nbsp;&nbsp;{{data.State__c}}</p>
+					<span class="area">{{data.Total_Area_in_Sq_Ft__c}}</span><span class="price">Price:{{data.Total_Rent__c}}</span>
+					<div>
+						<span><img src="../images/contact-btn.png"></span><span style="float:right;margin-top: 10px;"><img id="test{{$index}}" ng-src="../images/{{data.imgSrc}}" ng-click="addToShortlist(data._id)"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="shortlist" ng-show="shortlist">
+			<div class="outer-span" ng-repeat="data2 in shortlistData" ng-mouseover="showInfowFindow(data2._id)" ng-mouseleave="hideInfoWindow(data2._id)">
+				<div class="left">
+					<a href="" ng-click="showDetails($index)"><img style="width:250px;" src="images/pic.jpg"></a>
+				</div>
+				<div class="right">
+					<h2>{{data2.Total_Area_in_Sq_Ft__c}}Sq Ft property at {{data2.Location__c}} for Sale</h2>
+					<p>{{data2.Location__c}}&nbsp;&nbsp;{{data2.City__c}}&nbsp;&nbsp;{{data2.State__c}}</p>
+					<span class="area">{{data2.Total_Area_in_Sq_Ft__c}}</span><span class="price">Price:{{data2.Total_Rent__c}}</span>
+					<div>
+						<span><img src="../images/contact-btn.png"></span><span style="float:right;margin-top: 10px;"><img src="../images/del-sortlist-btn.png" ng-click="delFromShortlist(data2._id)"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="details" ng-show="detailsList">
+			<div class="outer-span pull-right">
+				<ul class="nav nav-tabs">
+				  <li class="active" style="padding:0;"><a href="">Home</a></li>
+				  <li style="padding:0;"><a href="">Menu 1</a></li>
+				  <li style="padding:0;"><a href="">Menu 2</a></li>
+				  <li style="padding:0;"><a href="">Menu 3</a></li>
+				</ul>
+				<span ng-click="backBtn()" style="position: absolute;right: 10%;top: 16%;"><img src="../images/back-btn.png"></span>
+				<div>
+					<div id="slides_control">
+					  <div>
+					      <carousel interval="myInterval">
+					        <slide ng-repeat="slide in slides" active="slide.active">
+					          <img ng-src="{{slide.image}}">
+					          <div class="carousel-caption">
+					            <h4>Slide {{$index+1}}</h4>
+					          </div>
+					        </slide>
+					      </carousel>
+					    </div>
+					  </div>
+				</div>
+				<div>
+					<h2>Building Name Area {{details.name}}</h2>
+					</div>
+					<div>
+					<p><img src="images/play.png"/>{{details.address}}</p>
+					</div>
+					
+					
+					<div>
+					
+					<span style="width:150px;color:#1aba96;"> <img src="images/triangle.png"/>{{details.area}}&nbsp;Sqft</span>
+					
+					<span style="width:150px;margin-left:50px"> <img src="images/line.png"/></span>
+					
+					<span style="color:#1aba96;margin-left:50px;word-spacing: 30px;"><b style="color:#888888">Price:</b>${{details.price}}</span>
+					
+					<span style="width:150px;margin-left:50px"> <img src="images/line.png"/></span>
+					
+					<span style="float:right"><b style="color:#888888">Share:</b><img src="images/fb.png"/><img src="images/twi.png"/><img src="images/mail.png"/><img src="images/por.png"/><span>
+					</div>
+					
+					<div>
+					<p>{{details.description}}</p>
+					<p>Landmark is {{details.landmark}}</p>
+				</div>
+				<hr>
+				<div>
+				<img src="images/contact-btn.png">
+				<img src="images/sortlist-btn.png" style="float:right">
+				</div>
+			</div>
+		</div>
+</div>

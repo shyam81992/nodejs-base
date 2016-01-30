@@ -1,0 +1,442 @@
+<div class="container">
+  <div class="backtotop" ng-click="mousewheeltop()"></div>
+  <div class="modal-opacity" ng-click="closeopacitymodal($event)"></div>
+<!-- login by shyam -->
+  <modal title="Login form" id="loginaccount" visible="showModal" ng-model="showModal" class="log-alon" >
+    <form name="login" data-ng-element-ready="setloginaccountform(login)" ng-submit="loginUsers(login)" novalidate>
+    <div class="login-area" >
+      <span class="close" ng-click="toggleModal()"><img src="images/user-close.png"></span>
+                <div class="col-xs-6 login-sec  large-col-right">
+                      <h3>Login Into Your Account</h3>
+                       <div class="login-section"> 
+
+
+                          <div class="form-group  user font-icon" ng-class="{ 'has-error' :login.username.$invalid && login.username.$dirty && login.username.$touched,'is-valid':login.username.$valid && login.username.$touched}">       
+                            <input name="username" type="text" class="form-control italic-place" ng-model="loginuser.username" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" ng-focus="login.username.$setUntouched()"  placeholder="Username" id='loginusername' required>
+                            <p ng-show="login.username.$invalid && login.username.$dirty && login.username.$touched" class="err-msg">Please enter a valid email address.</p>
+
+                           </div> 
+                           <div class="form-group password font-icon" ng-class="{ 'has-error' : login.password.$invalid && login.password.$dirty && login.password.$touched,'is-valid':login.password.$valid && login.password.$touched}">       
+                            <input name="password" type="password" class="form-control italic-place" ng-model="loginuser.password" ng-focus="login.password.$setUntouched()" placeholder="Password" required autocomplete="off">
+                            <p ng-show="login.password.$invalid && login.password.$dirty && login.password.$touched" class="err-msg">Please enter password</p>
+                           </div>
+                           <div >
+                             <p class="err-msg" ng-show="incorrectusernamepassword">Hey, we are not able to recognize you. Can you try logging in with the correct username/password?</p>
+                             <p class="err-msg" ng-show="incorrectUserName">Hey, We can not find you. <a role='button' ng-click="regModal()">Register here</a></p>
+                             <p class="err-msg" ng-show="incorrectPassword">Wrong password</p>
+                             <p class="err-msg" ng-show="verificationError">Please activate</p>
+                           </div>
+                           <div class="form-group loader-align">
+                            <input type="submit" ng-show="!forgotpassword_loader" value="Login"  class="btn-primary btn">  
+                            <img ng-show="forgotpassword_loader"  src="../images/ajax-loader.gif"/>  
+                           </div>
+                           <div class="row login-btm">
+                               <div class="col-xs-12 col-sm-6 col-login-btm">
+                                   <input type="checkbox" id="subscribed" ng-model="loginuser.subscribe" class="remember pull-left" />
+                                   <label for="subscribed" class="pull-left">Remember me</label>
+                               </div>
+                               <div class="col-xs-12 col-sm-6 col-login-btm">
+                                   <a href="" data-dismiss="modal" ng-click="forgotmodel()" class="forgot ">Forgot Password ?</a>
+                               </div>
+                           </div>
+                        </div>
+                </div>
+
+                <div class="col-xs-6 social-section  large-col-left">
+                   <a role="button" ng-click="regModal()"><h3>Dont have an account? Sign Up!</h3></a>
+                    <div class="social-links-wrap">
+                        <a href="" ng-click="facebookLogin()" class="fb-log font-icon" data-toggle="tooltip" title="Sign in with Facebook">Sign in with Facebook</a>
+                        <a href="" ng-click="googleLogin()" class="ln-log gplus-log font-icon" data-toggle="tooltip" title="Sign in with Google">Sign in with Google</a>
+                        <a href="" ng-click="linkedinLogin()" class="ln-log font-icon" data-toggle="tooltip" title="Sign in with Linkedin">Sign in with Linkedin</a>
+                    </div>
+                </div>
+          </div>
+    </form>
+  </modal>
+  <modal title="Edit Profile" id="forgotaccount" visible="forgotpassword" class="forgotpass" >
+      <form role="form" name="forgotpasswordform" id='forgot'novalidate data-ng-element-ready="setforgotaccount(forgotpasswordform)" ng-submit="sendmail(forgotpasswordform.username.$invalid)"> 
+      <div class="login-area">
+        <span class="close" ng-click="forgotmodel()"><img src="images/user-close.png"></span>
+                <div class="col-sm-12">
+                      <h3>Forgot your password?</h3>
+                       <div class="login-section for"> 
+                        Enter the email address associated with your account, and we'll 
+email you a link to reset your password.
+                          <div class="form-group" ng-class="{'has-error':(forgotpasswordform.username.$invalid)&&forgotpasswordform.username.$dirty && forgotpasswordform.username.$touched,'is-valid':forgotpasswordform.username.$valid && forgotpasswordform.username.$touched }" >       
+                             <input  type="text" class="form-control italic-place" placeholder="Email" ng-model="user.username" name="username" ng-focus="clearToch('forgotpasswordform','username')" placeholder="Email" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/" required  ng-blur='sendData(user.username)' />
+                             <span style="color:red" ng-show="forgotpasswordform.username.$dirty||invalidemail">
+                               <span  class="err-msg" ng-show="forgotpasswordform.username.$error.required && forgotpasswordform.username.$touched">Please enter your Email Address.</span>
+                               <span class="err-msg"  ng-show="forgotpasswordform.username.$error.pattern && forgotpasswordform.username.$touched">Sorry, you have entered an invalid Email Address.</span>
+                               <span class="err-msg"  ng-show="forgetErrorMsg">Sorry, you have entered an Email Address that does't exits.</span>
+                               </span>
+
+                           
+                           </div>
+                           </div> 
+                           <div class="form-group loader-align">
+                               <button type='submit' data-toggle="modal" ng-show="!forgotpassword_loader"  class="btn-primary btn">Submit</button> 
+                               <img ng-show="forgotpassword_loader"  src="../images/ajax-loader.gif"/> 
+                           </div>
+                           <div>
+                                <a href="" role="button" data-dismiss="modal" ng-click="gotologin()" class="forgot pull-left">Back to login</a>
+                           </div>
+                        </div>
+                </div>
+      
+      </form>
+    </modal>
+  <!--End of login-->
+    <modal title="Create Account" id='registeraccount' visible="register" class="register-pop" >
+      <div class="login-area">
+          <span class="close" ng-click="regModal()"><img src="images/user-close.png"></span>
+                <div class="col-xs-7 login-sec  large-col-right">
+                      <h3>Create an Account</h3>
+                       <div class="login-section reg" data-ng-element-ready="setregisterform(userForm)"> 
+
+                        <form name="userForm" id='userForm' class="userForm" ng-submit=" regiteration()" novalidate>
+
+                          <div class="form-group" ng-class="{ 'has-error' : userForm.displayname.$invalid && userForm.displayname.$dirty && userForm.displayname.$touched,'is-valid':userForm.displayname.$valid && userForm.displayname.$touched }" >
+                             
+                               <input type="text" name="displayname" class="form-control italic-place"  ng-model="user.displayname" ng-maxlength='50' ng-pattern='/^[a-z\sA-Z]*$/' placeholder="Can we have your name" required=''  ng-keypress="changed($event)" ng-focus="clearToch('userForm','displayname')" ng-blur="onBlur($event)" ng-click="doubleClick($event)"/>
+                
+                                <span  ng-show="userForm.displayname.$dirty||contact.input ">
+                                  <span  ng-show="userForm.displayname.$error.required && userForm.displayname.$touched" class="err-msg">
+                                    Please enter Name
+                                  </span>
+                                </span>
+                                <span  ng-show="userForm.displayname.$error.pattern && userForm.displayname.$touched" class="err-msg">
+                                  Please enter only alphabets from A-Z
+                                </span>
+                                <span ng-show="userForm.displayname.$error.maxlength && userForm.displayname.$touched" class="err-msg">
+                                  Please enter only 50 characters
+                                </span>
+                          </div>
+
+                            <div class="form-group" ng-class="{ 'has-error' : (userForm.username.$invalid && userForm.username.$dirty && userForm.username.$touched)||checkemail,'is-valid':(userForm.username.$valid && userForm.username.$touched)}">   
+                            <input  type="email" id='regemail' class="form-control italic-place" ng-model="user.username" name="username"  placeholder="e-mail will help us connect with you" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/"  ng-blur='sendData(user.username)' ng-focus="clearToch('userForm','username')" required>
+                            <p ng-show="(userForm.username.$invalid  ||userForm.username.$error.pattern) &&userForm.username.$dirty && userForm.username.$touched" class="err-msg">Please enter a valid email address</p>
+                            <p ng-show="checkemail&&userForm.username.$valid && userForm.username.$touched" class="err-msg">Hey we know you. Why not <a href="#" ng-click="toggleModal()">login here ?</a></p>
+                            
+                           </div>
+                           
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.company.$invalid && userForm.company.$dirty && userForm.company.$touched,'is-valid': userForm.company.$valid && userForm.company.$touched }"> 
+
+                              <input type="text" id="companyname" name="company" placeholder="Which company do you work for?"  ng-model="user.company" ng-pattern='/^[a-z\sA-Z]*$/' ng-maxlength='50' required class="form-control italic-place"  ng-keypress="changed($event)" ng-focus="clearToch('userForm','company')" ng-blur="onBlur($event)" ng-click="doubleClick($event)"/>
+                                  <span  ng-show="userForm.company.$dirty||contact.input">
+                                  <span  ng-show="userForm.company.$error.required && userForm.company.$touched" class="err-msg">Please enter Company Name</span>
+                                  <span  ng-show="userForm.company.$error.pattern && userForm.company.$touched" class="err-msg">Please enter only alphabets from A-Z
+                                  </span>
+                                  </span>
+                                 <span   ng-show="userForm.company.$error.maxlength" class="err-msg">please enter only 50 characters</span>
+
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty && userForm.password.$touched,'is-valid': userForm.password.$valid && userForm.password.$touched }"> 
+                              <input  type="password" id='regpassword' class="form-control italic-place" ng-model="user.password" name="password"  placeholder="Choose your preferred password*" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])(?!.*\s)/" ng-minlength='8' ng-maxlength='20' ng-focus="clearToch('userForm','password')" ng-change="passwordsubmit(user.confirmpassword)" required autocomplete="off">
+                              <!-- <p ng-show="userForm.password.$invalid && !userForm.password.$dirty" class="err-msg">Password is invalid.</p> -->
+                              <p ng-show="  (userForm.password.$error.minlength ||userForm.password.$error.required|| userForm.password.$error.maxlength)&&(!userForm.password.$error.pattern||userForm.password.$error.required) && userForm.password.$dirty && userForm.password.$touched" class="err-msg">Passwords must be between 8 and 20 characters</p>
+                              <p ng-show=" userForm.password.$error.pattern && userForm.password.$dirty && userForm.password.$touched" class="err-msg">Must contain one lower &amp; uppercase letter, one non-alpha character (a number or a symbol), and no white space</p>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.confirmpassword.$dirty&&((user.confirmpassword!=user.password)||userForm.confirmpassword.$invalid) && userForm.confirmpassword.$touched,'is-valid': userForm.confirmpassword.$valid && userForm.confirmpassword.$touched }"> 
+                              <input  type="password" class="form-control italic-place" ng-model="user.confirmpassword" name="confirmpassword"  placeholder="Confirm Password*" ng-change="passwordsubmit(user.confirmpassword)" ng-focus="clearToch('userForm','confirmpassword')" required autocomplete="off">
+                              <span ng-show="userForm.confirmpassword.$invalid && userForm.confirmpassword.$dirty && !userForm.confirmpassword.$error.required && userForm.confirmpassword.$touched" class="err-msg">Password do not match</span>
+                              <span ng-show="userForm.confirmpassword.$error.required && userForm.confirmpassword.$dirty && userForm.confirmpassword.$touched" class="err-msg">Please enter Confirm Password</span>
+                              <span ng-show="userForm.confirmpassword.$valid&&userForm.password.$valid && userForm.confirmpassword.$touched" style="font-size: 12px;font-style: italic;color: green;">Awesome. The passwords match</span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.mobile.$invalid && userForm.mobile.$dirty && userForm.mobile.$touched,'is-valid': userForm.mobile.$valid && userForm.mobile.$touched&&user.mobile }"> 
+                            <label class="number italic-place">+91</label><input  type="text" class="form-control mobile italic-place" ng-model="user.mobile" name="mobile"  placeholder="Mobile Number" ng-pattern="/^[0-9]{10}$/" ng-init="msgDisp=true" ng-focus="clearToch('userForm','mobile')">
+                            <p ng-show="userForm.mobile.$invalid && userForm.mobile.$dirty && userForm.mobile.$touched" class="err-msg">Enter a valid Phone Number</p>
+                            <p ng-show="msgDisp" style="font-size: 12px;font-style: italic;color: green;">No worries please ! We won't call you, till when you want us to</p>
+                          </div>
+                            <div class="form-group" ng-class="{ 'has-error' : userForm.service.$invalid && userForm.service.$dirty && userForm.service.$touched,'is-valid': userForm.service.$valid && userForm.service.$touched }"> 
+                            <select name="service" ng-class="{'empty' : !user.service }" ng-model="user.service" ng-focus="clearToch('userForm','service')" required class="form-control select-arg italic-place">
+                              <option ng-hide="true" value="" class="italic-place">What are you looking for?*</option>
+                              <option value="1" class="italic-place">Are you looking for a Commercial Space</option>
+                              <option value="2" class="italic-place">Are you looking to rent/sell your Commercial Space</option>
+                            </select>
+                            <span ng-show="userForm.service.$error.required&&userForm.service.$dirty && userForm.service.$touched" class="err-msg">Select service</span>
+                            </div> 
+                            
+                              <div class="form-group captch-grp" ng-if="registercaptcha">
+                            <img ng-src='captchaimage/{{captcha_no}}'>
+                            <div class="captch-txt form-group" ng-class="{'has-error':(userForm.captcha.$dirty&&userForm.captcha.$invalid&&userForm.captcha.$touched)||incorrectcaptcha}">
+                              <input type="text" name="captcha" placeholder="captcha" ng-model="user.captcha" required class="form-control italic-place" ng-focus="captchafocus();clearToch('userForm','captcha')"/>
+                              <span class="err-msg" ng-show="userForm.captcha.$dirty&&userForm.captcha.$invalid&&userForm.captcha.$touched&&!incorrectcaptcha">Please enter the Captcha</span>
+                              <span class="err-msg" ng-show="incorrectcaptcha&&userForm.captcha.$touched">Incorrect Captcha try again</span>
+                            </div>
+                              <img type='image' role='button'  class="refresh" ng-click="captcharefresh();clearToch('userForm','captcha');resetcpstatus()" value='refresh' src="images/cap-refresh.png"/>
+                            </div> 
+                           <div class="form-group loader-group">
+                               <input type='submit' data-toggle="modal"  ng-show="createBtn" class="btn-primary btn" value="I am IN">
+                               <img ng-show="loader" src="../images/ajax-loader.gif"> 
+                           </div>
+                             <div class="terms-cond form-group">By creating an account, you agree to the <a href="">Terms of Service </a>of Commercio</div>
+                            </form>
+                                
+                        </div>
+
+                </div>
+            
+                <div class="col-xs-5 social-section  large-col-left">
+                   <a  ng-click="toggleModal()"><h3 role="button">Already have an account? Sign In!</h3></a>
+                    <div class="social-links-wrap">
+                        <a href="" ng-click="facebookLogin()" class="fb-log font-icon" data-toggle="tooltip" title="Sign in with Facebook">Sign in with Facebook</a>
+                        <!-- <a href="/auth/twitter" class="twr-log font-icon">Sign in with Twitter</a> -->
+                         <a href="" ng-click="googleLogin()" class="ln-log gplus-log font-icon" data-toggle="tooltip" title="Sign in with Google">Sign in with Google</a>
+                        <a href="" ng-click="linkedinLogin()" class="ln-log font-icon" data-toggle="tooltip" title="Sign in with Linkedin">Sign in with Linkedin</a>
+                       
+                    </div>
+                </div>
+          </div>
+        <!-- </form> -->
+    </modal>
+
+    <!-- for making backdrop false add these data-backdrop="static" data-keyboard="false" -->
+    <modal title="add Details" id="changepass" visible="regcom" data-backdrop="static" data-keyboard="false" class="changepass">
+  
+        <div class="login-area" >
+          <span class="close" ng-click="closeChangePassModel()"><img src="images/user-close.png"></span>
+          <form name="changePass" data-ng-element-ready="setchangePassform(changePass)" ng-submit="changePassword()" novalidate>
+                <div>
+                      <h3>Change password</h3>
+                       <div class="login-section">
+                          <div class="form-group" ng-class="{ 'has-error' : changePass.newpassword.$dirty&&changePass.newpassword.$invalid && changePass.newpassword.$touched,'is-valid': changePass.newpassword.$valid && changePass.newpassword.$touched }" >       
+                            <input  type="password" class="form-control italic-place" placeholder="New password" name="newpassword"  ng-model="forgetPass.password" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" ng-focus="clearToch('changePass','newpassword')" minlength="8" ng-maxlength="20" required >
+
+                            <p ng-show=" (changePass.newpassword.$error.minlength ||changePass.newpassword.$error.required|| changePass.newpassword.$error.maxlength)&&(!changePass.newpassword.$error.pattern||changePass.newpassword.$error.required) && changePass.newpassword.$dirty && changePass.newpassword.$touched" class="err-msg">Passwords must be between 8 and 20 characters.</p>
+                            <p ng-show=" changePass.newpassword.$error.pattern && changePass.newpassword.$dirty && changePass.newpassword.$touched" class="err-msg">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</p>
+                            </div>
+                          </div> 
+                         
+                          <div class="form-group" ng-class="{ 'has-error' : changePass.confirm.$dirty&&((forgetPass.password!=forgetPass.confirmpassword)||userForm.confirm.$invalid) }">       
+                            <input name="confirm" type="password" class="form-control italic-place" placeholder="Confirm Password" ng-model="forgetPass.confirmpassword" ng-match="forgetPass.password" required>
+                            <p ng-show="(forgetPass.confirmpassword!=forgetPass.password) && changePass.confirm.$valid " class="err-msg">Password do not match.</p>
+                            <p ng-show="changePass.confirm.$error.required && changePass.confirm.$dirty " class="err-msg">Password is required.</p>
+                          </div> 
+                          <input type="hidden" ng-model="forgetPass.token">
+                          <div class="form-group loader-align">
+                            <input type="submit" value="Change password" ng-show="!forgotpassword_loader"  class="btn-primary btn">   
+                            <img ng-show="forgotpassword_loader"  src="../images/ajax-loader.gif"/> 
+                           </div>  
+                          
+                        </div>
+                   </form>
+                </div>
+              
+         
+      
+
+  </modal>
+
+  <modal title="add Details" id="scocialUser" visible="socialRegistration" data-backdrop="static" data-keyboard="false" class="scocialUser">
+  
+        <div class="login-area"  >
+          <form name="scocialUserFrm" data-ng-element-ready="setscocialUserform(scocialUserFrm)" novalidate>
+                <div>
+                      <h3>Social Registration</h3>
+                       <div class="login-section">
+                           <div class="form-group">
+                             <label>{{scocialUser.display_name}}</label>
+                           </div>
+                           <div class="form-group" ng-if='socialUsername'>
+                             <label>{{scocialUser.username}}</label>
+                           </div>
+
+                           <div    ng-if='!socialUsername' class="form-group" ng-class="{ 'has-error' : (scocialUserFrm.username.$invalid && scocialUserFrm.username.$dirty)||checkemail}">   
+                            <input  type="text" id='regemail' class="form-control" ng-model="scocialUser.username" name="username"  placeholder="Email Address*" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/"  ng-blur='sendData(scocialUser.username)' ng-focus='emailcheck()' required>
+                            <p ng-show="(scocialUserFrm.username.$invalid  ||scocialUserFrm.username.$error.pattern) &&scocialUserFrm.username.$dirty"  class="err-msg">Please enter a valid email address.</p>
+                            <p ng-show="checkemail&&scocialUserFrm.username.$valid&&checkemail" class="err-msg">The email "{{scocialUser.username}}" is already registered.</p>
+                            
+                           </div>  
+                           <div class="form-group" ng-class="{ 'has-error' : scocialUserFrm.company.$invalid && scocialUserFrm.company.$dirty }"> 
+                              <input  type="text" class="form-control" ng-model="scocialUser.company" name="company"  placeholder="Company" required >
+                              <p ng-show="!scocialUser.company && scocialUserFrm.company.$dirty" class="err-msg">Please enter company name</p>
+
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : scocialUserFrm.mobile.$invalid && scocialUserFrm.mobile.$dirty }"> 
+                            <label class="number">+91</label><input  type="text" class="form-control mobile" ng-model="scocialUser.mobile" name="mobile"  placeholder="Mobile*" ng-pattern="/^[0-9]{10}$/" required>
+                            <p ng-show="scocialUserFrm.mobile.$invalid && scocialUserFrm.mobile.$dirty" class="err-msg">Enter a valid Phone Number.</p>
+                          </div>
+                            <div class="form-group" ng-class="{ 'has-error' : scocialUserFrm.service.$invalid && scocialUserFrm.service.$dirty }" > 
+                            <select  name="service" ng-class="{'empty' : !scocialUser.service } " ng-model="scocialUser.service" class="form-control select-arg" required>
+                              <option  ng-hide="true" value="">What are you looking for?*</option>
+                              <option  value="1">Are you looking for a Commercial Space</option>
+                              <option  value="2">Are you looking to rent/sell your Commercial Space</option>
+                            </select>
+                            <span ng-show="scocialUserFrm.service.$error.required&&scocialUserFrm.service.$dirty " class="err-msg">Select service</span>
+                            </div> 
+                            <div class="form-group">
+                               <a href="" data-toggle="modal"  ng-click="socialReg()" ng-show="!scocialUserFrmloader" class="btn-primary btn">Submit</a> 
+                               <img ng-show="scocialUserFrmloader" src="../images/ajax-loader.gif"> 
+                           </div>
+                        </div>
+                </div>
+              </form>
+          </div>
+      
+
+  </modal>
+
+<modal title="Success registration" id="successreg" visible="successRegistration" data-backdrop="static" data-keyboard="false" class="successreg">
+  
+        <div class="reg-success-area"  >
+         <span class="close" ng-click="hidesuccessreg()"><img src="images/user-close.png"></span>
+            <h4>Verification e-mail</h4>
+            <p>Great! Just one more step. Please check the verification e-mail that we had just sent across to the registered e-mail address ({{mailToDisplay}}).</p>
+            <p class="bottm-email">If you have not received an e-mail, <a role="button" ng-disabled="resendmaildisabled" ng-click='resendmail()'>click here!</a></p>
+        </div>
+        <div style="text-align:center">
+          <img ng-show="resendmaildisabled" src="../images/ajax-loader.gif" class="ng-scope">
+        </div>
+          
+  </modal>
+  <modal title="Success registration" id="successreg" visible="resendRegistration" data-backdrop="static" data-keyboard="false" class="successreg">
+  
+        <div class="reg-success-area"  >
+         <span class="close" ng-click="closeResendModel()"><img src="images/user-close.png"></span>
+            <h4>Verification e-mail</h4>
+            <p>Got it. We have resent another verification e-mail. If you have still not got it, can you please check the Spam/Junk e-mail section.</p> 
+            <p class="bottm-email">If not, please write to us at <a href="mailTo:support@commercio.com">support@commercio.com</a></p>
+          </div>
+          
+  </modal>
+
+    <!--added class "container"-->
+    <div class="container pad-zero">
+    <div class="logo">
+      <a href="/#/"><img src="/images/logo-test.png"  alt="Commercio"></a>
+    </div>
+  
+    <div class="header-right">
+     <div class="modal-notification" ng-click="modalnotificationtrig()" ng-show="firstnotifi||syncednotifi"></div>
+      <ul>
+        <li ng-show="login" ng-click="toggleModal()"><a href="">
+           <img src="images/login-icon.png" width="17" height="16">
+            <span class="hidden-xs">Login </span></a></li>
+
+           <li ng-show="reg" ng-click="regModal()"><a href=""><img src="images/register-icon.png" width="14" height="16"> <span class="hidden-xs">Register</span></a></li>
+       <li class="notfi-sync" ng-hide="login" ng-click="firstnotification()">
+           <span class="notifi-count" ng-if="synnotification||alertnotification">{{getnotificationcount()}}</span><span class="useravatar imground1 " users="avatars"></span>
+          </li>
+          <li class="drop-down-notifi" ng-show="firstnotifi">
+             
+             <ul>
+                <li ng-click="synchShortlistcall()" ng-if="synnotification" role="button" >
+                  There are some shortlisted properties in your browser cache. 
+                        Click here to sync them to your account.
+                </li>
+                 <li class="last" role="button" role="button" ng-click="showalertpage()" ng-if="alertnotification">
+                  There are some alert notification Click here to see.
+                </li> 
+             </ul>
+          </li>
+          <li class="sync-notifi up-arrow" ng-if="syncednotifi" style="left:{{values}}px" ng-class="{'modal-fix': opens}">
+           <p>
+            Total properties in cache 
+               <span class="conts">{{localshortlistdata.length}}</span><button role="button" class="but-sync"  ng-click="synchShortlist()" >sync</button>    
+            <span class="pull-right slect-all">select all <input id="checkall" type="checkbox" ng-model="checkall" ng-click="addremoveall(checkall)" /></span>  
+            </p>      
+           <ul scrollevent2>
+            <li ng-repeat="data in localshortlistdata" ng-class="{'last':$last}">
+                <div class="img-div class-imgmap" ng-class="{'rent' : data.sortlist_type=='Rent','buy' : data.sortlist_type=='Buy'}">
+             <img src="images/no-img.png" ng-if="data.Image_URL_1__c ==null "/>
+             <img ng-if="data.Image_URL_1__c != null" ng-src="{{data.Image_URL_1__c}}"  alt="Office Space" >
+                    <div class="property-image-count"><span class="photo-icon"></span>{{data.imageArray.length}} Photos</div>
+                </div>
+                <div class="notifi-img-details class-imgdetails">
+                <div class="title-nof">{{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}} <input type="checkbox" class="slect-sep" ng-click="addremovelist(data._id)" ng-checked="selectedlocal_shortlist.indexOf(data._id)>=0"/></div>
+                   <div class="address-nof">{{data.Location__c}},{{data.City__c}},{{data.State__c}}</div> 
+                    <div class="prce-nof">
+                    <span class="sqft">{{data.Total_Area_in_Sq_Ft__c}} Sqft</span>
+                    <span class="price" ng-if="data.sortlist_type=='Rent'"><span class="price-tag">Price :</span>
+                    <span ng-if= "data.line_item_category == 'Business Center' || data.line_item_category == 'Co-Working Space' "><i class="rs font-icon ng-binding">{{data.Total_Rent__c}} </i><sub>/ Workstation</sub></span>
+                    <span ng-if= "data.line_item_category != 'Business Center' && data.line_item_category != 'Co-Working Space'"><i class="rs font-icon ng-binding">{{data.Total_Rent__c}} </i><sub>/ Month</sub></span>
+                    </span>
+                    <span class="price" ng-if="data.sortlist_type=='Buy'"><span class="price-tag">Price :</span><i class="rs font-icon ng-binding">{{data.Total_Price__c}} </i></span>     
+                    </div>
+                    
+                </div>
+            </li>  
+           </ul>
+          
+          </li>
+       
+
+        <li ng-hide="login" class="usr-prf"><a href=""><a href="javascript:void(0)" data-toggle="dropdown">
+      <!--   <span class="imground">
+        <img ng-src="{{profileimage}}" class="animated"></span> --> 
+       <!--  <span class="useravatar imground1 " users="avatars"></span> -->
+        <span class="hidden-xs usrname" >{{displayname}}</span></a>
+            <ul class="dropdown-menu">
+            <li><a href="/userprofile#/">My Profile</a></li>
+            <li><a ng-click="logoutUser()" href="/logout">Logout</a></li>
+        </ul>
+            
+            </li>
+        <li class="pad-right animated-menu" >
+            <a href="" ><span class="hidden-xs"> Menu</span> 
+            
+<!--            <img   ng-click="toogleMenu($event)" src="images/nav-icon.png" width="28" height="20"></a>-->
+          <div class="menu-anim" ng-click="toogleMenu($event)">
+                <span class="top"></span>
+                <span class="middle"></span>
+				<span class="bottom"></span>
+            </div>
+          </li>
+      </ul>
+        <div class="menus-trans">
+            <h2>menu</h2>
+        <ul>
+          <li>
+             <a> Home </a>
+          </li>
+
+            <li>
+              <a role="button" ng-click="openlistyourspace()">  List Your Space  </a>
+            </li> 
+            <li>
+              <a>  Post Requirements </a>
+            </li> 
+            <li>
+              <a>  About Us </a>
+            </li> 
+            
+           
+        </ul>
+            <div class="need-hlp"> Need any help? Write to us at
+support@commercio.com</div>
+            <div class="social-media">
+            <span class="fb"></span>
+            <span class="gog"></span>
+            <span class="inc"></span>
+            <span class="tw"></span>
+                
+            </div>
+        </div>
+        <!-- menu right ends-->
+    </div>
+    <div ng-if="!headerhide">
+      <div class="location-wrapper" >
+      <form id="locationheader" class="locationheader">
+                        <input id= "locations" name="location" class="location-input" auto-complete ui-items="names" minlength="0" ng-focus="hasFocus=true"  ng-model="locality" placeholder={{locations|truncate:25}} ng-click="locationplace()" ng-change="autocompleterecent(locality)"/>
+                          
+
+                            <span class="icon-search" ng-click="callnewLocationEvent()"></span>
+                            </form>
+                        </div> 
+        <div class="option-switcher" select-option>
+        <select  class="selectoption5" ng-model="selectedpage" ng-change="changepage(selectedpage)">
+        <option value="buypage">Buy</option>
+        <option value="rentpage">Rent</option>    
+        </select>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class='error' id="popup-msg" style='display:none'></div>
+<script type="text/javascript">
+    $(document).ready(function() { 
+      $("body").tooltip(); 
+    });
+</script>

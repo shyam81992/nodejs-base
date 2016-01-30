@@ -1,0 +1,475 @@
+<div class="container">
+  <div class="loading-listprp compare-loading" ng-show="list_loader1" >
+               <div class="compare-loading-content">
+                    <img src="/images/loadinlist.png" class="img-loadscomp"/><br>
+                    <img src="/images/lisingdot.gif"/>
+                   </div>
+                    </div>
+
+  <div class="clearfix">
+         <section class="compare-blk clearfix">
+    <h3 class="pull-left">compare spaces</h3>
+    <span class="back-to-search pull-right"><a href="" ng-click="back()">Back to Search</a></span>
+  </section>
+          </div>
+  <div class="compare-table">
+    <ul class="clearfix fixestop " scroll ng-class="{comparetop:boolChangeClass}"  style="width:{{heightout}}px">
+      <li class="border-right-blk title-contens1">
+        <div class="block-1 pad-18">
+          <div class="sub-block1">
+            <p>Property Summary</p>
+          </div>
+        </div>
+        <div class="gray-block pad-18 text-center-blk">
+          <p>Price</p>
+        </div>
+        <div class="white-block pad-24 text-center-blk">
+          <p>Transaction Type</p>
+        </div>
+      </li>
+      <li class="border-right-blk" ng-repeat="data in ::comparearr ">
+        <div class="block-2">
+          <div class="office-space-price"> <a class="compare-close" href="" ng-click="remove(data._id)"><img src="../images/compare-close.png"></a> 
+            <img ng-if="data.Image_URL_1__c == null" ng-src="images/no-img.png" alt="compare-property">
+                   <img ng-if="data.Image_URL_1__c != null"
+                      ng-src="{{data.Image_URL_1__c}}" alt="compare-property">
+            <section class="compare-space-info">
+              <h2>{{textlimit(data.line_item_category,data.master_object_id.Master_Type__c)|truncate:22}}
+                
+              </h2>
+              <span class="compare-address">{{data.Location__c}},{{data.City__c}}</span> </section>
+          </div>
+        </div>
+        <div class="gray-block pad-18 text-center-blk"> <span class="compare-green">
+                 <span ng-if="data.sortlist_type=='Rent'" > 
+                          <span class="compare-rupee" ng-if= "data.line_item_category == 'Business Center' || data.line_item_category == 'Co-Working Space' " >
+                            &#8377;{{data.Total_Rent__c}} 
+                          </span>
+                           <span class="compare-values" ng-if= "data.line_item_category == 'Business Center' || data.line_item_category == 'Co-Working Space' "> / Workstation&nbsp;</span>
+                              <span class="compare-rupee" ng-if= "data.line_item_category != 'Business Center' 
+                              && data.line_item_category != 'Co-Working Space' " >
+                             &#8377; {{data.Total_Rent__c}}
+                          </span>
+                           <span class="compare-values" ng-if= "data.line_item_category != 'Business Center' 
+                              && data.line_item_category != 'Co-Working Space' "> / Month&nbsp;</span>
+                    </span>
+
+                    <span ng-if="data.sortlist_type=='Buy'" > 
+                          <span class="compare-rupee" ng-if= "data.master_object_id.line_item_category == 'Business Center' || data.master_object_id.line_item_category == 'Co-Working Space' " >
+                            &#8377;{{data.Total_Price__c}} 
+                          </span>
+                           <span class="compare-values" ng-if= "data.master_object_id.line_item_category == 'Business Center' || data.master_object_id.line_item_category == 'Co-Working Space' "> / Workstation&nbsp;</span>
+
+                          <span class="compare-rupee" ng-if= "data.line_item_category != 'Business Center' 
+                              && data.line_item_category != 'Co-Working Space' " >
+                             &#8377; {{data.Total_Price__c}}
+                          </span>
+                           <span class="compare-values" ng-if= "data.line_item_category != 'Business Center' 
+                              && data.line_item_category != 'Co-Working Space' "> &nbsp;
+                            </span>
+                    </span>
+        </span> 
+      </div>
+        <div class="white-block pad-18 text-center-blk"> <span class="compare-buy-space contact-buyer">
+             <a href="">For {{data.Type_of_Transaction__c}}</a></span> 
+        </div>
+      </li>
+     
+      
+    
+    </ul>
+    
+    <ul class="clearfix" ng-class="{marginupstyle:marginup}">
+      <li style="width:100%; float:none;">
+        <div class="title-block">
+          <h1>Facility Information</h1>
+        </div>
+      </li>
+      <li class="border-right-blk title-contens2" ng-repeat="data in ::comparearr |limitTo:1">
+        <div class="block-6" >
+          <div class="white-block  text-center-blk" >
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' || data.line_item_category == 'Retail Space'">Type of Facility </p>
+
+            <p ng-if= "data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space'">Roof Type</p>
+
+            <p ng-if= "data.line_item_category == 'Commercial Land' ">Frontage</p>
+
+          </div>
+
+          <div class=" gray-block  text-center-blk">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">Work Stations</p>
+
+            <p ng-if= "data.line_item_category == 'Retail Space' ">Frontage</p>
+
+            <p ng-if= "data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space'">Roof Height (In Feet)</p>
+             <p ng-if= "data.line_item_category == 'Commercial Land' ">Plot_Dimensions</p>
+
+          </div>
+
+           <div class=" white-block  text-center-blk">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">Closed Manager's Cabins</p>
+
+            <p ng-if= "data.line_item_category == 'Retail Space'">Ceiling</p>
+
+            <p ng-if= "data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space'">Floor Loading</p>
+             <p ng-if= "data.line_item_category == 'Commercial Land' ">Floor Space Index</p>
+
+          </div>
+
+
+           <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'|| data.line_item_category == 'Retail Space'" >
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">Open Manager's Cabins</p>
+
+            <p ng-if= "data.line_item_category == 'Retail Space' ">Footfall</p>
+
+          </div>
+
+
+           <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >Conference Room</p>
+
+          </div>
+
+           <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Board Room</p>
+
+          </div>
+          <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Discussion Room</p>
+
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Reception</p>
+
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Training Room</p>
+
+          </div>
+
+         
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' ">
+            <p >Pantry</p>
+
+          </div>
+
+             <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'  ">
+            <p >Cafeteria</p>
+
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Vendor / Interview Room</p>
+
+          </div>
+
+            <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Lab Room</p>
+
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p >Server Room</p>
+
+          </div>
+
+          <div class="text-center-blk" ng-class=" data.line_item_category == 'Warehouse'  ? 'gray-block' : 'white-block'" ng-if= "data.line_item_category != 'Commercial Land' ">
+            <p >Electrical / UPS Room</p>
+
+          </div>
+        
+          <div class="text-center-blk" ng-class=" data.line_item_category == 'Warehouse'  ? 'white-block' : 'gray-block'" ng-if= "data.line_item_category != 'Commercial Land' ">
+            <p >Storage Room</p>
+
+          </div>
+
+          <div class="text-center-blk" ng-class=" data.line_item_category == 'Warehouse'  ? 'gray-block' : 'white-block'" ng-if= "data.line_item_category != 'Commercial Land' ">
+            <p >Rest Rooms</p>
+
+          </div>
+       
+       
+
+        </li>
+
+        <!--Values -->
+      <li class="border-right-blk" ng-repeat="data in ::comparearr ">
+        <div class="block-6">
+           <div class="white-block  text-center-blk">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' || data.line_item_category == 'Retail Space'">{{data.Type_of_Facility__c}} </p>
+
+            <p  ng-if= "data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space'">{{data.Roof_Type__c}} </p>
+
+            <p ng-if= "data.line_item_category == 'Commercial Land' ">{{data.Frontage__c}} </p>
+             <p ng-if="(data.Type_of_Facility__c== ''|| data.Type_of_Facility__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' || data.line_item_category == 'Retail Space') ">-</p>
+             <p ng-if="(data.Roof_Type__c== ''|| data.Roof_Type__c== null) && (data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space') ">-</p>
+            <p ng-if="(data.Frontage__c== ''|| data.Frontage__c== null) && (data.line_item_category == 'Commercial Land') ">-</p>
+          </div>
+
+           <div class="gray-block  text-center-blk">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" title="{{data.Workstation_Details__c}}" tools>{{data.No_of_Workstations__c}}</p>
+
+            <p ng-if= "data.line_item_category == 'Retail Space' ">{{data.Frontage__c}}</p>
+
+            <p ng-if= "data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space'">{{data.Roof_Height__c}}</p>
+
+              <p ng-if= "data.line_item_category == 'Commercial Land' ">{{data.Plot_Dimensions__c}}</p>
+
+              <p ng-if="(data.No_of_Workstations__c== null || data.No_of_Workstations__c== '') && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+              <p ng-if="(data.Frontage__c== ''||data.Frontage__c== null) && (data.line_item_category == 'Retail Space') ">-</p>
+               <p ng-if="(data.Roof_Height__c== ''|| data.Roof_Height__c== null) && (data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space') ">-
+               </p>
+               <p ng-if="(data.Plot_Dimensions__c== '' || data.Plot_Dimensions__c== null) && (data.line_item_category == 'Commercial Land') ">-</p>
+          </div>
+
+
+         <div class="white-block  text-center-blk">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">{{data.Closed_Manager_Cubiles__c}}</p>
+
+            <p ng-if= "data.line_item_category == 'Retail Space'">{{data.Ceiling_Height__c}}</p>
+
+            <p ng-if= "data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space'">{{data.Floor_Loading__c}}</p>
+            <!--Floor Index-->
+             <p ng-if= "data.line_item_category == 'Commercial Land' ">{{data.FSI_Floor_Space_Index__c}}</p>
+              <p ng-if="(data.Closed_Manager_Cubiles__c== '' || data.Closed_Manager_Cubiles__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+              <p ng-if="(data.Ceiling_Height__c== ''|| data.Ceiling_Height__c== null) && (data.line_item_category == 'Retail Space') ">-</p>
+               <p ng-if="(data.Floor_Loading__c== null || data.Floor_Loading__c== '') && (data.line_item_category == 'Warehouse' || data.line_item_category == 'Cold Storage' || data.line_item_category == 'Industrial Building' || data.line_item_category == 'Industrial Shed' || data.line_item_category == 'Factory Space') ||!data.hasOwnProperty('Floor_Loading__c') ">-
+               </p>
+               <p ng-if="(data.FSI_Floor_Space_Index__c== '' || data.FSI_Floor_Space_Index__c== null) && (data.line_item_category == 'Commercial Land') ">-</p>
+          </div>
+
+           <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'|| data.line_item_category == 'Retail Space'" >
+
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">{{data.Open_Manager_Cubicles__c}}</p>
+
+            <p ng-if= "data.line_item_category == 'Retail Space' ">{{data.Footfall__c}}
+            </p>
+            <p ng-if="(data.Open_Manager_Cubicles__c== ''|| data.Open_Manager_Cubicles__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+            <p ng-if="(data.Footfall__c== '') && (data.line_item_category == 'Retail Space') ">-</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            
+
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" title="{{data.Conference_Room_Details__c}}" tools >{{data.Conference_Room__c}}</p>
+           <p ng-if="(data.Conference_Room__c== ''||data.Conference_Room__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+
+          </div>
+
+         <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" title="{{data.Board_Room_Details__c}}" tools >{{data.Board_Room__c}}</p>
+              <p ng-if="(data.Board_Room__c== ''|| data.Board_Room__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+
+          </div>
+
+            <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" title="{{data.Discussion_Room_Details__c}}" tools>{{data.Discussion_Room__c}}</p>
+             <p ng-if="(data.Board_Room__c== '' || data.Board_Room__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >{{data.Reception__c}}</p>
+             <p ng-if="(data.Reception__c== ''|| data.Reception__c== null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+          </div>
+
+          
+           <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">{{data.Training_Room__c}} </p>
+             <p ng-if="(data.Training_Room__c== ''|| data.Training_Room__c== null ) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+          </div>
+
+           <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' " >
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' && data.Pantry__c =='Available' "  title="{{data.Pantry_Details__c}}" tools >Yes</p>
+            <p ng-if="(data.Pantry__c !='Available' || data.Pantry__c ==null) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center')">-</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >
+            <p ng-if= "(data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center' ) && (data.Cafeteria__c =='Available') "  title="{{data.Cafeteria_Details__c}}" tools  >Yes</p>
+             <p ng-if="(data.Cafeteria__c ==' ' || data.Cafeteria__c !='Available') && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') ">-</p>
+          </div>
+       
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p  ng-if= "(data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center') && (data.Vendor_Interview_Room__c =='Available' )"  title="{{data.Vendor_Interview_Room_Details__c}}" tools>Yes</p>
+              <p ng-if="(data.Vendor_Interview_Room__c == null || data.Vendor_Interview_Room__c !='Available' ) && (data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center')">-</p>
+          </div>
+
+           <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'" >{{data.Lab_Room__c}}</p>
+            <p ng-if="data.Lab_Room__c == ''||data.Lab_Room__c == null && data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">-</p>
+          </div>
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">
+            <p ng-if= "data.line_item_category == 'Office Space' || data.line_item_category == 'Co-Working Space' || data.line_item_category == 'Business Center'">{{data.Server_Room__c}}</p>
+            <p ng-if="data.Server_Room__c == null||data.Server_Room__c == ''">-</p>
+          </div>
+
+
+          <div class="text-center-blk" ng-class=" data.line_item_category == 'Warehouse'  ? 'gray-block' : 'white-block'" ng-if= "data.line_item_category != 'Commercial Land' ">
+            <p ng-if= "data.line_item_category != 'Commercial Land' ">{{data.Electrical_UPS_Room__c}}</p>
+            <p ng-if="(data.Electrical_UPS_Room__c == ''|| data.Electrical_UPS_Room__c == null) && data.line_item_category != 'Commercial Land'">-</p>
+          </div>
+
+
+         <div class="text-center-blk" ng-class=" data.line_item_category == 'Warehouse'  ? 'white-block' : 'gray-block'" ng-if= "data.line_item_category != 'Commercial Land' ">
+            <p ng-if= "data.line_item_category != 'Commercial Land' ">{{data.Storage_Room__c}}</p>
+            <p ng-if="data.Storage_Room__c == null || data.Storage_Room__c == ''">-</p>
+          </div>
+
+            <div class="text-center-blk" ng-class=" data.line_item_category == 'Warehouse'  ? 'gray-block' : 'white-block'" ng-if= "data.line_item_category != 'Commercial Land' ">
+            <p ng-if= "data.line_item_category != 'Commercial Land' ">{{data.Restrooms__c}}</p>
+            <p ng-if="data.Restrooms__c == '' || data.Restrooms__c == null ">-</p>
+          </div>
+           
+        </div>
+      </li>
+      
+     
+    </ul>
+    
+    
+    <ul class="clearfix">
+      <li style="width:100%; float:none;">
+        <div class="title-block">
+          <h1>Amenity Details</h1>
+        </div>
+      </li>
+      <li class="border-right-blk title-contens2" ng-repeat="data in ::comparearr |limitTo:1">
+        <div class="block-6">
+          <div class="gray-block  text-center-blk">
+            <p>Power Supply</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if=" data.line_item_category == 'Commercial Land'">
+            <p>Water Supply</p>
+          </div>
+
+             <div class="White-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Car/Two Wheeler Parking</p>
+          </div>
+             <div class="gray-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Car Parking</p>
+          </div>
+
+           <div class="white-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Two Wheeler Parking</p>
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Networking and Cabling</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Air Conditioning</p>
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if="  data.line_item_category != 'Commercial Land'">
+            <p >Fire Exit</p>
+          </div>
+
+          <div class="white-block text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Fire Fighting Equipments</p>
+          </div>
+
+
+          <div class="gray-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>Elevators</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if="data.line_item_category != 'Commercial Land'">
+            <p>100% DG Backup Power</p>
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if=" data.line_item_category != 'Commercial Land'">
+            <p>24/7 Common Security & Maintenance Support</p>
+          </div>
+
+            <div class="white-block  text-center-blk" style="">
+            <p></p>
+          </div>
+
+        </div>
+        </li>
+
+        <li class="border-right-blk" ng-repeat="data in ::comparearr " >
+          <div class="block-6">
+          <div class="gray-block pad-18 text-center-blk" >
+            <p ng-if= "data.Power_Supply__c =='Available' "  title="{{data.Power_Supply_Details__c}}" tools>Yes</p>
+            <p ng-if="data.Power_Supply__c != 'Available' || !data.hasOwnProperty('Power_Supply_Details__c')">-</p>
+          </div>
+
+           <div class="white-block  text-center-blk" ng-if= "data.line_item_category == 'Commercial Land'">
+            <p ng-if= "data.line_item_category == 'Commercial Land' && data.Water_Supply__c =='Available' "  title="{{data.Water_Supply_Details__c}}" tools>Yes</p>
+            <p ng-if="data.Water_Supply__c != 'Available' || !data.hasOwnProperty('Water_Supply_Details__c')">-</p>
+          </div>
+
+           <div class="white-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'" >
+            <p ng-if="data.Car_Two_Wheeler_Parking__c == 'Available' && data.line_item_category != 'Commercial Land' "  >Yes</p>
+             <p ng-if="data.Car_Two_Wheeler_Parking__c != 'Available' || !data.hasOwnProperty('Car_Two_Wheeler_Parking__c')">-</p>
+          </div>
+
+
+           <div class="gray-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if="data.Car_Parking__c == 'Available' && data.line_item_category != 'Commercial Land' " title="{{data.Car_Parking_Details__c}}" tools >Yes</p>
+             <p ng-if="data.Car_Parking__c != 'Available' || !data.hasOwnProperty('Car_Parking__c')">-</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'" >
+            <p ng-if="data.Two_Wheeler_Parking__c == 'Available' && data.line_item_category != 'Commercial Land'" title="{{data.Two_Wheeler_Parking_Details__c}}" tools>Yes</p>
+               <p ng-if="data.Two_Wheeler_Parking__c != 'Available' && data.line_item_category != 'Commercial Land' || !data.hasOwnProperty('Two_Wheeler_Parking__c')">-</p>
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'" >
+            <p ng-if="data.Networking_and_Cabling__c == 'Available'&& data.line_item_category != 'Commercial Land'&& data.Networking_and_Cabling__c =='Available' "  title="{{data.Networking_and_Cabling_Details__c}}" tools>Yes</p>
+            <p ng-if="!data.hasOwnProperty('Networking_and_Cabling__c') || data.Networking_and_Cabling__c!='Available'">-</p>
+          </div>
+          
+            <div class="white-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if="data.Air_Conditioning__c == 'Available'&& data.line_item_category != 'Commercial Land'" title="{{data.Air_Conditioning_Details__c}}" tools>Yes</p>
+             <p ng-if="data.Air_Conditioning__c != 'Available'&& data.line_item_category != 'Commercial Land' || !data.hasOwnProperty('Air_Conditioning_Details__c')">-</p>
+          </div>
+
+          <div class="gray-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if="data.Fire_Exit__c == 'Available' && data.line_item_category != 'Commercial Land'">Yes</p>
+            <p ng-if="data.Fire_Exit__c != 'Available' && data.line_item_category != 'Commercial Land' || !data.hasOwnProperty('Fire_Exit__c')">-</p>
+          </div>
+
+          <div class="white-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if="data.Fire_Fighting_Equipments__c == 'Available' && data.line_item_category != 'Commercial Land'">Yes</p>
+            <p ng-if="data.Fire_Fighting_Equipments__c != 'Available' && data.line_item_category != 'Commercial Land' || !data.hasOwnProperty('Fire_Fighting_Equipments__c') ">-</p>
+          </div>
+          
+
+          <div class="gray-block  text-center-blk"   ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if=" data.line_item_category != 'Commercial Land'" title="{{data.Elevator_Description__c}}" tools>{{data.Elevators__c}}</p>
+            <p ng-if="data.Elevators__c == '' || !data.hasOwnProperty('Elevators__c')">-</p>
+          </div>
+
+           <div class="white-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if="data.X100_DG_Backup_Power__c == 'Available' && data.line_item_category != 'Commercial Land'">Yes</p>
+            <p ng-if="data.X100_DG_Backup_Power__c != 'Available' && data.line_item_category != 'Commercial Land' || !data.hasOwnProperty('X100_DG_Backup_Power__c')">-</p>
+
+          </div>
+
+           <div class="gray-block  text-center-blk" ng-if= "data.line_item_category != 'Commercial Land'">
+            <p ng-if="data.X24_7_Common_sec_Maint_Support__c == 'Available' && data.line_item_category != 'Commercial Land'" >Yes</p>
+            
+            <p ng-if="data.X24_7_Common_sec_Maint_Support__c != 'Available' && data.line_item_category != 'Commercial Land' || !data.hasOwnProperty('X24_7_Common_sec_Maint_Support__c') ">-</p>
+          </div>
+
+          <div class="white-block pad-18 text-center-blk" >
+            <span class="compare-buy-space contact-buyer" ng-click="contactrefresh(data._id)" data-toggle="modal" data-target="#contactus" ><a href="">Contact</a></span>
+          </div>
+        </div>
+
+      </li>
+      
+      
+    </ul>
+    <div class='contactform'ng-include="'../templates/contact.html'" ng-controller="contactController"></div>
+  </div>
+</div>
+
+
+
+

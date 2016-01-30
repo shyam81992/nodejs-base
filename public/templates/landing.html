@@ -1,0 +1,388 @@
+<style>
+.listSpace-fields{
+  padding:5px;
+}
+.btn-listSpace{
+  padding:10px;
+}
+#list_your_space textarea { resize: vertical;width:480px; height:130px;padding:5px;}
+#list_your_space .btn{width:initial !important;}
+</style>
+<div  class="slider"  ng-if="home_page" ng-style="banner_images" >
+
+<ul>
+    <li class="">
+        <video id="video" loaded-data ng-show="banner_video"  loop> 
+  <source id="mp4_src" type="video/mp4" />
+  <source id="ogg_src" type="video/ogg" />
+  Your browser does not support the video tag.
+</video>
+
+        </li>
+    </ul> 
+  <div class="container above-conts-slide">
+    
+    <div class="row">
+        
+
+        <h1 ng-bind-html="to_trusted(banner_logo)">{{::banner_logo}} </h1>
+       
+       <div class="button-wrapper">
+        
+         <ul class="">
+           <li class="col-xs-4" >
+               <div class="button-content animated bounceInLeft"><a href="/rentpage" title="Space For Rent" class="space-rent">
+                   <span class="space-rent-ic animated shake"></span>
+                   space for rent
+                   
+                   </a></div>
+            </li>
+           <li class="col-xs-4" >
+               <div class="button-content animated bounceInDown"><a href="/buypage" title="Space For Buy" class="space-buy">
+                   <span class="space-by-ic animated flipInX"></span>
+                   space for buy
+                   </a></div>
+            </li>
+           <li class="col-xs-4"  ng-click="ShowListYourSpaceModal()">
+               <div class="button-content animated bounceInRight">
+                   <a href="" class="list-space" title="List Your Space">
+                       <span class="space-lst-ic animated jello"></span>
+                       list your space
+                   </a></div>
+           </li>
+         </ul>
+       </div>
+    </div>
+    <a href="" class="scroller hidden-xs hidden-sm" ng-click="mousedrag()">
+        <div class="mouse"><div class="wheel"></div></div>
+        <div>
+            <span class="arrow-top"></span> 
+            <span class="arrow-center"></span> 
+            <span class="arrow-bottom"></span> 
+        </div>
+    </a>     
+  </div>
+</div>
+<div ng-controller="listyourspaceController">
+<div class="list-your-model clearfix" >
+  <modal  title="List Your Space" id='ListYourSpace' class='ListYourSpace' visible="showListYourSpace" data-backdrop="static" ng-model="showListYourSpace"  >
+     <div class="modal-header ng-scope">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">We would love to know about your space</h4>
+  </div>
+          <form role="form" name="frmListYourSpace" id="frmListYourSpace" data-ng-element-ready="setfrmListYourSpaceform(frmListYourSpace)" novalidate> 
+      <div id= "list_your_space" class="login-area" style="color:black" flow-init>
+                <div class="col-sm-12">
+                 <!--  <h3>List your Space</h3> -->
+                  <div class="listSpace-fields">
+                    <div  ng-class="{'has-error':(frmListYourSpace.name.$invalid)&&frmListYourSpace.name.$dirty && frmListYourSpace.name.$touched,'is-valid':frmListYourSpace.name.$valid && frmListYourSpace.name.$touched }">
+                      <p>Your Name*</p>
+                      <input type="text" class="italic-place" name="name" ng-model="listProperty.name" placeholder="Enter Your Name"  ng-pattern='/^[a-z\sA-Z]*$/' ng-maxlength='50' ng-focus="clearToch('frmListYourSpace','name')" required/>
+                      <span style="color:red" ng-show="frmListYourSpace.name.$dirty&&frmListYourSpace.name.$invalid">
+                       <span class="err-msg"  style="color:red" ng-show="frmListYourSpace.name.$error.required && frmListYourSpace.name.$touched">Please enter your Name</span>
+                       <span class="err-msg" style="color:red"  ng-show="frmListYourSpace.name.$error.pattern && frmListYourSpace.name.$touched">Please enter only alphabets from A-Z</span>
+                        <span class="err-msg" style="color:red"  ng-show="contactForm.name.$error.maxlength && frmListYourSpace.name.$touched">Please enter only 50 characters</span>
+                      </span>
+                    </div>
+                    <div  ng-class="{'has-error':(frmListYourSpace.phone.$invalid)&&frmListYourSpace.phone.$dirty && frmListYourSpace.phone.$touched,'is-valid':frmListYourSpace.phone.$valid && frmListYourSpace.phone.$touched}">
+                      <p>Mobile number*</p>
+                      <div class="phone-numbers">
+                          <span class="phone-prefix italic-place">+91</span>
+                          <input class="phone italic-place" type="text" name="phone" ng-model="listProperty.phone"  ng-pattern='/^[0-9]{10}$/' ng-focus="clearToch('frmListYourSpace','phone')" required/>
+                      </div>
+                      <span style="color:red" ng-show="frmListYourSpace.phone.$dirty&&frmListYourSpace.phone.$invalid">
+                       <span  style="color:red" class="err-msg" ng-show="frmListYourSpace.phone.$error.required && frmListYourSpace.phone.$touched">Please enter a valid phone number</span>
+                       <span style="color:red" class="err-msg" ng-show="frmListYourSpace.phone.$error.pattern && frmListYourSpace.phone.$touched">Please enter a valid phone number</span>
+                      </span>
+                    </div>
+                    <div  ng-class="{'has-error':(frmListYourSpace.propertyAddress.$invalid)&&frmListYourSpace.propertyAddress.$dirty && frmListYourSpace.propertyAddress.$touched,'is-valid':frmListYourSpace.propertyAddress.$valid && frmListYourSpace.propertyAddress.$touched}">
+                    <p>Where is your space located?</p>
+                    <textarea  name="propertyAddress" class="italic-place" placeholder="Enter your location" ng-model="listProperty.propertyAddress" ng-maxlength="250" ng-focus="clearToch('frmListYourSpace','propertyAddress')" required/>
+                    <span style="color:red" ng-show="frmListYourSpace.propertyAddress.$dirty&&frmListYourSpace.propertyAddress.$invalid">
+                       <span style="color:red" class="err-msg" ng-show="frmListYourSpace.propertyAddress.$error.maxlength && frmListYourSpace.propertyAddress.$touched">please enter only 250 characters.</span>
+                       <span  style="color:red" class="err-msg" ng-show="frmListYourSpace.propertyAddress.$error.required && frmListYourSpace.propertyAddress.$touched">Please enter your location.</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="listSpace-fields">
+                    <p>What type of space is it?*</p>
+                    <div  ng-class="{'has-error':(frmListYourSpace.typeOfSpace.$invalid)&&frmListYourSpace.typeOfSpace.$dirty && frmListYourSpace.typeOfSpace.$touched,'is-valid':frmListYourSpace.typeOfSpace.$valid && frmListYourSpace.typeOfSpace.$touched}">
+                      <select name="typeOfSpace" class="italic-place" ng-model="listProperty.typeOfSpace" ng-focus="clearToch('frmListYourSpace','typeOfSpace')" required>
+                       <option ng-hide="true" value="">What type of space is it?</option>
+                        <option value="{{i}}" ng-repeat="i in typeofspace">{{i}}</option>
+                      </select>
+                      <span ng-show="frmListYourSpace.typeOfSpace.$error.required &&frmListYourSpace.typeOfSpace.$dirty && frmListYourSpace.typeOfSpace.$touched" class="err-msg" style="color:red">Select type of space</span>
+                    </div>
+                  </div>
+                  <div class="listSpace-fields">
+                    <p>What kind of property the space belong to?*</p>
+                    <div  ng-class="{'has-error':(frmListYourSpace.propertyCategory.$invalid)&&frmListYourSpace.propertyCategory.$dirty && frmListYourSpace.propertyCategory.$touched,'is-valid':frmListYourSpace.propertyCategory.$valid && frmListYourSpace.propertyCategory.$touched}">
+                      <select name="propertyCategory" class="italic-place"  ng-model="listProperty.propertyCategory" ng-focus="clearToch('frmListYourSpace','propertyCategory')" required>
+                        <option ng-hide="true" value="">What kind of property the space belong to?</option>
+                        <option value="{{i}}" ng-repeat="i in kindofspace">{{i}}</option>
+                      </select>
+                       <span ng-show="frmListYourSpace.propertyCategory.$error.required&&frmListYourSpace.propertyCategory.$dirty && frmListYourSpace.propertyCategory.$touched" class="err-msg" style="color:red">Select type of space</span>
+                    </div>
+                  </div>
+                  <div class="listSpace-fields">
+                    <div  class="has-error">
+                     <p class="">Do you own the space?</p>
+                     <div class="btn-group clearfix" data-toggle="buttons">
+                      <label class="btn active css-label background-color" ng-click="setownership('yes')">
+                        <input type="radio" class="css-checkbox" name="list_property_for"  id="lease" value="yes" > Yes
+                      </label>
+                      <label class="btn css-label background-color" ng-click="setownership('no')">
+                        <input type="radio" class="css-checkbox" name="list_property_for"  id="rent" value="no"> No
+                      </label>
+                     </div> 
+                     <span>
+                       <span class="error err-msg" ng-show="listProperty.ownership=='no'" style="top: -10px;
+    position: relative;">Hey, Unfortunately we don’t support Non-Owners as of now. We will keep you posted soon. Thank you</span>
+                     </span>
+                     </div>
+                     <!-- <div class="error err-msg" ng-show="listProperty.ownership=='no'" style="color:red">Hey, Unfortunately we don’t support Non-Owners as of now. We will keep you posted soon. Thank you</div> -->
+                  </div> 
+                  <div  ng-class="{'has-error':(frmListYourSpace.buildingName.$invalid)&&frmListYourSpace.buildingName.$dirty && frmListYourSpace.buildingName.$touched,'is-valid':frmListYourSpace.buildingName.$valid && frmListYourSpace.buildingName.$touched }">
+                    <p>Can you help us with the name of the building?</p>
+                    <input type="text" ng-model="listProperty.buildingName" name="buildingName" placeholder="Enter Your Building Name" class="italic-place" ng-pattern='/^[a-z\sA-Z0-9]*$/' ng-maxlength='50' ng-focus="clearToch('frmListYourSpace','buildingName')" required/>
+                    <span style="color:red" ng-show="frmListYourSpace.buildingName.$dirty&&frmListYourSpace.buildingName.$invalid">
+                       <span  style="color:red" class="err-msg" ng-show="frmListYourSpace.buildingName.$error.required && frmListYourSpace.buildingName.$touched">Please enter your buildingName.</span>
+                       <span style="color:red"  class="err-msg" ng-show="frmListYourSpace.buildingName.$error.pattern && frmListYourSpace.buildingName.$touched">Please enter only alphabets from A-z and 0-9.</span>
+                        <span style="color:red" class="err-msg" ng-show="frmListYourSpace.buildingName.$error.maxlength && frmListYourSpace.buildingName.$touched">please enter only 50 characters.</span>
+                      </span>
+                  </div>
+                  <div class="listSpace-fields">
+                    <p>Why not share some images with us?</p>
+                    <div class="drag-files drop-box" name="fileupload" ngf-select="uploadFiles($files)" ngf-drop="uploadFiles($files)" class="drop-box" ng-model='filesArray' ng-model-options="{ allowInvalid: true, debounce: 0}" 
+                      ngf-drag-over-class="dragover" ngf-multiple="true" ngf-pattern="'image/*'">
+                      <span class="uploadfile-data">Add Files</span>Or drag and drop your images here
+                     </div>
+                    <div ngf-no-file-drop class="err-msg">File Drag/Drop is not supported for this browser</div>
+                    
+                   
+
+                    <table class="table table-hover table-bordered table-striped upload-file-list" scrollevent2>
+                     <tbody>
+                     <tr>
+                        <td ng-repeat="file in image_files track by $index">
+                         <div>
+                            <img ngf-thumbnail="!file.$error && file" ngf-size="{width: 100, height: 100, quality: 0.9}" class="thumb"></div>
+                            {{::$files|json}}
+                          <button class="file-remove" ng-click="image_files.splice($index,1);">remove</button>
+                           <div class="progress-bar" ng-if="file.progress" role="progressbar" aria-valuenow="{{file.progress}}"
+                            aria-valuemin="0" aria-valuemax="100" ng-style="{'width': file.progress+'%'}">
+                             {{::file.progress}}%
+                            </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                      </table>
+                      <div class='error err-msg' id="popup-msg-list" style='display:none'></div>
+                  </div>
+                  <div class="listSpace-fields" ng-show="showpercentage">
+                  <center>
+                    <img   src="../images/ajax-loader.gif"/>
+                  </center> 
+                  </div>
+                  <div class="listSpace-fields" ng-show='!showpercentage'>
+                    <button  ng-click = "listYourSpace(listProperty);" class="send-button">Submit</button> 
+
+                  </div>
+
+                </div>
+            </div>
+       
+      </form>
+
+  </modal>
+  </div>
+
+  <!-- OTP Model -->
+<div class="list-your-model otp-password">
+<div class="modal-dialog">
+  <modal  title="List Your Space" id='ListYourSpaceotp'  visible="showOTPModel" data-backdrop="static" ng-model="showOTPModel"  >
+     <button type="button" class="close" ng-click="setpercentage()" ng-disabled="showpercentageotp" data-dismiss="modal">&times;</button>
+     <div class="ListYourSpacesssss">
+       <div>
+         <p>We have just sent a OTP to the provided mobile number.</p>
+         <p>If you haven't received the OTP, please click <a ng-click="resendotp()" role="button" ng-disabled='showpercentageotp'>here.</a></p>
+       </div>
+       <p class="margin0"><input type="text" class="optno" ng-model="enteredOTP"  ng-change="validateOTP(enteredOTP)" placeholder="Type your OTP" only-digits></p>
+       <span class="password-sent" style="font-size: 12px;" ng-style="otpresult">{{wrongOtp}}</span>
+        
+        <img ng-show="showpercentageotp"  src="../images/ajax-loader.gif"/>
+     </div>
+
+  </modal>
+  </div>
+  </div>
+  </div>
+<!--what we offer-->
+
+
+<div class="whatwe-offer" ng-if="offer">
+  <div class="container">
+    <div class="row">
+       <h2 class="text-center">what we offer ?</h2> 
+       <div class="row-1"  >
+
+         <ul>
+
+           <li  class="col-lg-4 col-md-4 col-xs-6"   ng-repeat="offer in ::offer_images| orderBy:'order'" ng-class="{ 'text-danger': offer.order > 5  }" ng-cloak>
+
+               <div class="pos-rlv text-center" >
+                   <img  ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{::offer.images}}" alt="Office Space" onerror="this.src='images/no-img.png'" class="img-responsive" >
+
+                   <div class="description" >
+                        <h3 class="text-uppercase main-lay" style="cursor:pointer" ng-click="redirec(offer.textHeader)" >{{::offer.textHeader}}</h3>
+                       <h3 class="text-uppercase over-lay" style="cursor:pointer" ng-click="redirec(offer.textHeader)" >{{::offer.textHeader}}</h3>
+
+                       <p>{{::offer.textContent}} </p>
+                   </div>
+               </div>
+
+           </li>
+            
+         </ul>
+       </div>
+       
+       
+      <div class="seemore-wrapper" > <a href="" ng-click="last()" ng-if="see_more" class="seemore-button text-center">see more</a>
+      </div>
+       
+    </div>
+  </div>  
+</div>
+<!--what we offer-->
+
+<!--Mobile wrapper-->
+  <div class="mobile-app" ng-style="section3_backdrop" ng-if="mobile">
+     <div class="container">
+       <div class="row">
+         <div class="col-md-5 col-xs-6 mobile-img-wrap">
+           <img ng-src=" {{::urladmin.admin_url}}app/webroot/img/cms_images/{{::mobile_innerImage}}" class="mobile-img img-responsive" width="417" height="530" onerror="this.src='images/no-img.png'">
+         </div>
+         <div class="col-md-7 col-xs-6 mobile-description">
+           <h2 ng-bind-html="to_trusted(mobile_logo1)">{{::mobile_logo1}}</h2>
+           <br>
+           <h3 ng-bind-html="to_trusted(mobile_logo2)">{{::mobile_logo2}}</h3>
+           <h4>Download Now</h4>
+           <ul class="row">
+             <li class="col-xs-4"><a href="">
+                 
+                 <img src="images/windows.png" width="155" height="49" alt="Windows Store" class="img-responsive"></a></li>
+             <li class="col-xs-4"><a href=""><img src="images/ios.png" width="139" height="49" alt="App Store" class="img-responsive"></a></li>
+             <li class="col-xs-4"><a href=""><img src="images/android.png" width="143" height="49" alt="Google Play" class="img-responsive"></a></li>
+           </ul>
+           <p>Enter your mobile number to receive the download link via SMS.</p>
+          <div >
+            <form name="applinkFrm" novalidate>
+            <div>
+              <span style="color:red" ng-show="applinkFrm.app_link_phone_number.$dirty"> <span style="color:red" ng-show="applinkFrm.app_link_phone_number.$error.required">Mobile Number is required.</span></span>
+              <span style="color:red" ng-show="applinkFrm.app_link_phone_number.$error.number">Sorry, Please enter a valid Mobile Number.</span>
+               <span style="color:red" ng-show="((applinkFrm.app_link_phone_number.$error.minlength || applinkFrm.app_link_phone_number.$error.maxlength) && applinkFrm.app_link_phone_number.$dirty) ">Sorry, Please enter a valid 10 digit Mobile Number.</span>
+               
+                             <div class="alert fade in {{::appLinkClass}}" ng-show="appLinkMessage">
+  <a  class="close" data-dismiss="alert" aria-label="close">&times;</a>
+ {{appLinkMessage}}
+</div>
+            </div>  
+           <div> <input type="text"   class="form-control number" style="width:9%;padding:15px;border:0px" value="+91"   ng-readonly="readonlyCountrycode">
+            <input type="number"  class="form-control number"  style="border:0px;padding-left:0px;" ng-model="appLink.mobile" name="app_link_phone_number" required ng-minlength="10" ng-maxlength="10" >
+          </div>
+            <button  ng-disabled="applinkFrm.$invalid" type="submit" class="btn btn-default send-button" ng-hide="app_link_loader" ng-click = "sendAppLinkSms(appLink)">Send</button>
+           <img ng-show="app_link_loader" style="margin-left: 10px;" src="../images/ajax-loader.gif"/>
+          </form>
+
+          </div>
+         </div>
+       </div>
+     </div>
+  </div>
+<!--Mobile wrapper-->
+
+<!--preferred wrapper-->
+  <div class="preferred-choice" ng-if="preferred">
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center" ng-bind-html="to_trusted(preferred_choice_logo)">{{::preferred_choice_logo}}</h2>
+       <div class="row">
+        <div class="col-xs-6 col-md-4" ng-repeat="preferred_choice in ::preferred_choice track by $index | orderBy:'order'">
+          <div class="thumbnail">
+            <img ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{::preferred_choice.images}}" 
+            alt="Verified Venues" onerror="this.src='images/no-img.png'">
+            <div class="caption">
+              <h3 class="text-center" ng-bind-html="to_trusted(preferred_choice.logo)">{{::preferred_choice.logo}}</h3>
+              <p class="text-center" ng-bind-html="to_trusted(preferred_choice.text)">{{::preferred_choice.text}}</p>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+      </div>
+    </div>
+  </div>
+<!--preferred wrapper-->
+
+<!--Our client-->
+  <div class="client-wrapper" ng-if="client">
+    <div class="container">
+      <div class="row">
+       <h2 class="text-center" ng-bind-html="to_trusted(client_head)">{{::client_head}}</h2>
+        <p class="text-center" ng-bind-html="to_trusted(client_text)">{{::client_text}} </p>
+        <div class="logo-wrapper">
+          <div class="row-1">
+
+            <ul> 
+              <li class="col-xs-4 col-md-2 col-clients " ng-repeat="cli in ::clients track by $index| orderBy:'order'" >
+                
+                <img ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{::cli.images}}" class="img-responsive" onerror="this.src='images/no-img.png'"></li>
+             
+            </ul>
+          </div>
+          
+    </div>
+  </div>
+  </div>
+  </div>
+<!--Our Client-->
+
+<!--testimonial-->
+  <div class="testimonial" ng-if="testimonial">
+    <div class="container">
+      <div class="">
+           
+        <div class="testimonial-slider"  >
+             <div class="testimonial-wrapper"  ng-repeat=" testi in ::testimonials track by $index| orderBy:'order'" my-post-repeat-directive>
+                <a href="" class="user-img-wrap">
+                    <img ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{::testi.images}}" onerror="this.src='images/no-img.png'" alt="">
+                </a>
+                <div class="testimonial-details" ng-bind-html="to_trusted(testi.content)">
+                  
+                </div>
+            </div> 
+        
+          </div>
+          <h3 class="text-center" ng-bind-html="to_trusted(testimonail_text)">{{::testimonail_text}} ></h3>
+      </div>
+    </div>
+  </div>
+<!--testimonial-->
+
+<!--news-->
+  <div class="news-wrapper" ng-if="news_slider">
+    <div class="container">
+      <div class="news-img-slider">   
+           <div class="news-img-bx" ng-repeat="news_images in ::news_images track by $index| orderBy:'order' " my-post-repeat-directive>
+
+            <a target="_blank" href="{{::news_images.ad_link}}">
+            <img ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{::news_images.images}}" onerror="this.src='images/no-img.png'"></a></div>
+      </div>
+    </div>
+  </div>
+<!--news-->
+ <div class=""></div>
+</div>
+  <div class='error' id="popup-msg" style='display:none'></div>
+  
+

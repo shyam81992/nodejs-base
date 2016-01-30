@@ -1,0 +1,86 @@
+<div class="">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+      <h3 class="font-icon shortlist-head contactedproperties">Contacted Properties</h3>
+      <div class="shortlist-blk clearfix" my-Directivshortlisted  ng-repeat="data in contactedproperties"> 
+        <a href="" ><i ng-click="deletecontactedproperties(data._id)" class="close-icon"></i></a>
+        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-0 padding20 class-imgmap" > <a class="shortlist-img" href="" ng-click="getalert(data.master_line_id)">
+          <img ng-if="data.Image_URL_1__c == null" ng-src="images/no-img.png" alt="shortlisted-property">
+          <img ng-if="data.Image_URL_1__c != null"
+          ng-src="{{data.Image_URL_1__c}}" alt="shortlisted-property">
+        </a> </div>
+        <div class="col-xs-12 col-md-8 col-sm-7 col-lg-9 class-imgdetails">
+          <section class="shotlisted-space">
+            <section class="shortlisted-border" ng-click="getalert(data.master_line_id)" style="cursor:pointer">
+              <h1>{{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}}</h1>
+              <p class="shortlisted-location">{{data.Location__c}},{{data.City__c}}</p>
+              <div class="row">
+                <p class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="shorlisted-square">{{data.Total_Area_in_Sq_Ft__c}}&nbsp;Sqft</span></p>
+                <p class="col-xs-12 col-sm-6 col-md-8 col-lg-9" ng-if="data.Type_of_Transaction__c=='Rent'">
+                  <span class="shorlisted-price">Rent :&nbsp;&nbsp;</span>
+                  <span class="price-display" ng-if= "data.line_item_category == 'Business Center' || data.line_item_category == 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Rent__c}} </i><sub>/ Workstation</sub>
+                  </span>
+                  <span class="price-display" ng-if= "data.line_item_category != 'Business Center' 
+                  && data.line_item_category != 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Rent__c}} </i>
+                  <sub>/ Month</sub>
+                  </span>
+                </p>
+
+                <p class="col-xs-12 col-sm-6 col-md-8 col-lg-9" ng-if="data.Type_of_Transaction__c=='Buy'">
+                  <span class="shorlisted-price">Price :&nbsp;&nbsp;</span>
+                  <span class="price-display" ng-if= "data.master_object_id.line_item_category == 'Business Center' || data.master_object_id.line_item_category == 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Price__c}} </i><sub>/ Workstation</sub>
+                  </span>
+                  <span class="price-display" ng-if= "data.master_object_id.line_item_category != 'Business Center' 
+                  && data.master_object_id.line_item_category != 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Price__c}} </i>
+                  <sub>/ Month</sub>
+                  </span>
+                </p>
+              </div>
+            </section>
+            <div class="row mob-shortlist-icons clearfix">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-right margin-bottom10"><a class="btn-common float-left pull-right" href="">Contacted</a></div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-left">
+                <div class="socila-footer">
+              <ul>
+                  <li class="fb-socila">
+                      <a href=""socialshare
+                                    socialshare-provider="facebook"
+                                    socialshare-text="{{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}}"
+                                    socialshare-url="{{data.shareurl}}"
+                         > FB</a>
+                  </li> 
+                 <li class="in-socila">
+                      <a href="" socialshare
+                                    socialshare-provider="linkedin"
+                                    socialshare-text="{{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}}"
+                         socialshare-url="{{data.shareurl}}">linked in </a>
+                 </li>  
+                 <li class="tw-socila">
+                      <a href="" socialshare
+                                              socialshare-provider="twitter"
+                         socialshare-url="{{data.shareurl}}"> tweeter</a>
+                 </li>
+               
+                    
+              </ul>
+              </div>  
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!--<div ng-include="'../templates/recentlyviewed.html'" ng-controller="recentlyviewedController"></div>--> 
+  </div>
+  <div ng-show="(!contactedproperties.length)&&contactedproperties" class="alert alert-danger" ng-show="no_result">
+                 No Contacted properties Available
+        </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".mobile-user-tab").click(function(){
+            $(".user-tab").toggleClass("hidden-xs hidden-sm");
+        });
+
+    });
+</script> 

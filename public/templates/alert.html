@@ -1,0 +1,91 @@
+<div class="">
+  <div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+      <h3 class="font-icon alert-head">alerts</h3>
+     
+      <div id="alert-blk" class="shortlist-blk clearfix"> <a href="#"><i class="close-icon"></i></a>
+        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-0 padding20"> <a class="shortlist-img" href="#"><img src="../images/alert-edit-bg.jpg" alt="shortlisted-property"></a> </div>
+        <div class="col-xs-12 col-md-8 col-sm-7 col-lg-9">
+          <section class="shotlisted-space">
+            <section class="shortlisted-border">
+              <h1>Rent At Koramangala, Bangalore</h1>
+              <p class="">Office Space</p>
+              <p class="">Email frequency: <span class="alert-weekly">Weekly</span></p>
+              <div class="row"> <span class="col-xs-12 col-md-3 col-sm-3 col-lg-3 padding-right0">Can we call you?</span>
+                <div class="btn-group col-xs-12 col-md-9 col-sm-9 col-lg-9 padding-32 padding15 clearfix" data-toggle="buttons">
+                  <label class="btn active css-label background-color" ng-click="setownership('yes')">
+                    <input type="radio" class="css-checkbox" name="list_property_for" id="lease" value="yes">
+                    Yes </label>
+                  <label class="btn css-label background-color" ng-click="setownership('no')">
+                    <input type="radio" class="css-checkbox" name="list_property_for" id="rent" value="no">
+                    No </label>
+                </div>
+              </div>
+         
+            </section>
+            <div class="alert-search-list">   
+                  <a class="alert-search" href="#">Search</a>
+                  <a class="alert-Unsubscribe" href="#">Unsubscribe</a>
+                  <a class="alert-Edit" href="#">Edit</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!--<div ng-include="'../templates/recentlyviewed.html'" ng-controller="recentlyviewedController"></div>--> 
+  </div>
+</div>
+<div id="alert" class="modal fade" role="dialog">
+  <div class="modal-dialog"> 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Get Alert</h4>
+      </div>
+      <div class="modal-body" style="color:black">
+        <form role="form" name="form1"  novalidate>
+          <div ng-show="!alertcontent">
+            <div width="500" height="300"> <span >Location </span>
+              <input type="text" name="location" value="" class="location-input" ng-model="locations" ng-autocomplete="result3" details="details3" options="options3" placeholder="Enter any location" required />
+              <span class="icon-search" ng-click="newLocationEvent()"></span> <span style="color:red" ng-show="form1.location.$dirty||alertedit"> <span style="color:red"  ng-show="form1.location.$error.required">Please enter your location.</span> </span> </div>
+            <div> <span>Area </span>
+              <input type="text"  name="area"  placeholder="Enter  Area" ng-pattern="/^[0-9]*$/" ng-model="area_sqft" />
+              <span style="color:red" ng-show="form1.area.$dirty||alertedit"> <span style="color:red"  ng-show="form1.area.$error.pattern">Sorry, You have entered an Invalid Number</span> </span> </div>
+            <div> <span>Budget </span>
+              <input type="text" name="budget1"  placeholder="Enter Min Budget" ng-model="lower" ng-pattern="/^[0-9]*$/" />
+              <span style="color:red" ng-show="form1.budget1.$dirty||alertedit"> <span style="color:red"  ng-show="form1.budget1.$error.pattern">Sorry, You have entered an Invalid Number</span> </span>
+              <input type="text" name="budget2"  placeholder="Enter Max Budget" ng-model="upper" ng-pattern="/^[0-9]*$/" />
+              <span style="color:red" ng-show="form1.budget2.$dirty||alertedit"> <span style="color:red"  ng-show="form1.budget2.$error.pattern">Sorry, You have entered an Invalid Number</span> <span style="color:red"  ng-show="checkbudget()">Max Budget sould be greater than Min Budget</span> </span> </div>
+            <div>
+              <h1>Email Frequency</h1>
+              <div class="filter-options-heading text-uppercase">
+                <input type="checkbox" class='chk category'  ng-click="alertstate()" ng-checked="email_frequency">
+                Daily</div>
+              <div class="filter-options-heading text-uppercase">
+                <input type="checkbox" class='chk category' ng-click="alertstate()" ng-checked="!email_frequency" ng-true>
+                Weekly</div>
+            </div>
+            <div>
+              <select kendo-multi-select ng-show="type_of_space=='rent'" k-options="selectOptions1" k-ng-model="categoryArray">
+              </select>
+              <select kendo-multi-select ng-show="type_of_space=='buy'" k-options="selectOptions2" k-ng-model="categoryArray">
+              </select>
+            </div>
+            <div>
+              <button type="button" ng-click="savedalert(form1.area.$error.pattern
+                  ||form1.budget1.$error.pattern||form1.budget2.$error.pattern||checkbudget());" class="btn btn-default" >save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".mobile-user-tab").click(function(){
+            $(".user-tab").toggleClass("hidden-xs hidden-sm");
+        });
+    });
+</script>

@@ -1,0 +1,215 @@
+<modalcontact title="contact form"  >
+ 
+    <!-- Modal content-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Contact Us</h4>
+      </div>
+      
+      <div class="modal-body scroll-event">
+      
+      <div class="popup-subhead">Reach us at</div>
+        <div class="popup-subhead bold">040-3310-1235</div>
+        <div class="popup-separator text-uppercase">
+          
+            <p class="subtitle fancy"><span>OR</span></p>
+        
+        </div>
+        <div class="popup-subhead text-uppercase">Let us get in touch with you</div>
+        <div class="form-container" data-ng-element-ready="setcontactform(contactForm)">
+        <form role="form" class="clearfix" name="contactForm"  novalidate>
+          <div class="form-fields-container">
+              <div class="form-field-input-container">
+
+                  <input type="text" class="italic-place" id="companyname" name="companyname"  ng-model="contact.companyname" ng-pattern='/^[a-z\sA-Z]*$/' ng-maxlength='50' required ng-class="{'error':contactForm.companyname.$touched&&contactForm.companyname.$invalid&&contactForm.companyname.$dirty,'success-feild' :contactForm.companyname.$touched&&contactForm.companyname.$valid&&contactForm.companyname.$dirty}"   ng-focus="setUntouched('companyname')" ng-blur="setTouched('companyname')"  placeholder="Company Name*"/>
+                <span class="err-msg" ng-show="contactForm.companyname.$dirty&&contactForm.companyname.$touched">
+                <span class="err-msg" ng-show="contactForm.companyname.$error.required">Please enter Company Name</span>
+                <span class="err-msg" ng-show="contactForm.companyname.$error.pattern">Please enter only alphabets from A-Z</span>
+               <span class="err-msg"  ng-show="contactForm.companyname.$error.maxlength">please enter only 50 characters</span>
+               </span>
+              </div>
+                <div class="form-field-input-container">
+
+               
+                    <input type="text" class="italic-place" name="contactperson"  ng-model="contact.contactperson" ng-class="{'error':contactForm.contactperson.$invalid&&contactForm.contactperson.$dirty&&contactForm.contactperson.$touched,'success-feild' :contactForm.contactperson.$valid&&contactForm.contactperson.$dirty&&contactForm.contactperson.$touched}"ng-maxlength='50' ng-pattern='/^[a-z\sA-Z]*$/' required=''   ng-focus="setUntouched('contactperson')" ng-blur="setTouched('contactperson')"  placeholder="Contact Person*"/>
+                
+                  <span class="err-msg" ng-show="contactForm.contactperson.$dirty&&contactForm.contactperson.$touched ">
+                  <span  class="err-msg" ng-show="contactForm.contactperson.$error.required">Please enter Contact Person</span>
+                  <span class="err-msg" ng-show="contactForm.contactperson.$error.pattern">Please enter only alphabets from A-Z</span>
+                  <span class="err-msg"  ng-show="contactForm.contactperson.$error.maxlength">Please enter only 50 characters</span>
+                  </span>
+                </div>
+            </div>
+            <div class="form-fields-container">
+
+               <div class="form-field-input-container">
+                  <input type="text" class="italic-place" id='email' name="email"  ng-model="contact.email"  style="padding: 10px;" size="28" ng-maxlength='50' ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/"  ng-class="{'error':contactForm.email.$invalid &&contactForm.email.$dirty&&contactForm.email.$touched,'success-feild' : contactForm.email.$valid &&contactForm.email.$dirty&&contactForm.email.$touched}" required=''   ng-focus="setUntouched('email')" ng-blur="setTouched('email')"  placeholder="Email*"/>
+              
+                   <span class="err-msg" ng-show="contactForm.email.$dirty&&contactForm.email.$touched ">
+                   <span  class="err-msg" ng-show="contactForm.email.$error.required">Please enter your Email Address</span>
+                   <span class="err-msg"  ng-show="contactForm.email.$error.pattern">Sorry, you have entered an invalid Email Address</span>
+                   <span class="err-msg"  ng-show="contactForm.email.$error.maxlength">Please enter only 50 characters</span>
+                   </span>
+               </div>
+        <div class="form-field-input-container">
+
+
+            <input type="text"  class="italic-place" name="phone" id='phone' ng-maxlength='25' ng-model="contact.phone"   ng-pattern="/^[0-9]{10}$/"  ng-class="{'error':contactForm.phone.$invalid&&contactForm.phone.$dirty&&contactForm.phone.$touched,'success-feild' :contactForm.phone.$valid&&contactForm.phone.$dirty&&contactForm.phone.$touched }" required=''   ng-focus="setUntouched('phone')" ng-blur="setTouched('phone')"  placeholder="Phone*"/>
+
+       
+          <span class="err-msg" ng-show="contactForm.phone.$dirty&&contactForm.phone.$touched ">
+                <span class="err-msg"  ng-show="contactForm.phone.$error.pattern">Sorry, You have entered an Invalid Phone Number</span>
+                <span class="err-msg" ng-show="contactForm.phone.$error.required">Please enter  Phone Number</span>
+            </span>
+         </div>
+            </div>
+            <div class="form-fields-container">
+              <div class="form-field-input-container">
+
+                  <input type="text" class="italic-place" name="area" id='area' ng-model="contact.area" ng-maxlength='50' ng-pattern="/^[0-9a-z\sA-z]*$/" ng-class="{'error':contactForm.area.$invalid&&contactForm.area.$dirty&&contactForm.area.$touched,'success-feild' :contactForm.area.$valid&&contact.area }"   ng-focus="setUntouched('area')" ng-blur="setTouched('area')"  placeholder="Area (Sqft)"/>
+
+               <span class="err-msg" ng-show="contactForm.area.$dirty&&contactForm.area.$touched">
+              <span class="err-msg"  ng-show="contactForm.area.$error.pattern">Please enter number or alpabets only</span>
+              <span class="err-msg"  ng-show="contactForm.area.$error.maxlength">Please enter only 50 characters</span>
+              </span>
+              </div>
+              
+        <div class="form-field-input-container">
+
+            <input type="text" class="italic-place" name="prefferedlocation"  ng-model="contact.prefferedlocation" ng-maxlength='50'ng-pattern="/^[0-9a-z\sA-z\,\:\-\.]*$/" ng-class="{'error':contactForm.prefferedlocation.$invalid&&contactForm.prefferedlocation.$dirty&&contactForm.prefferedlocation.$touched,'success-feild' :contactForm.prefferedlocation.$valid&&contact.prefferedlocation }"   ng-focus="setUntouched('prefferedlocation')" ng-blur="setTouched('prefferedlocation')"  placeholder="Preffered Location"/>
+         <span ng-show="contactForm.prefferedlocation.$touched&&contactForm.prefferedlocation.$dirty">
+         <span class="err-msg"  ng-show="contactForm.prefferedlocation.$error.maxlength">Please enter only 50 characters</span>
+         <span class="err-msg" ng-show="contactForm.prefferedlocation.$error.pattern">Please enter only  number or alpabets or special characters, : -.</span>
+         </span>
+         </div>
+         
+            </div>
+            <div class="form-fields-container">
+              <div class="form-field-textarea-container">
+
+                  <textarea name="query" class="italic-place" ng-class="{'error':contactForm.query.$invalid&& contactForm.query.$dirty&&contactForm.query.$touched,'success-feild' :contactForm.query.$valid&&contact.query  }"  ng-model="contact.query" ng-maxlength="250" rows="4"   ng-focus="setUntouched('query')"  ng-blur="setTouched('query')"  placeholder="Query"></textarea></div>
+
+              <span class="err-msg" ng-show="contactForm.query.$dirty&&contactForm.query.$touched">
+              <span class="err-msg"  ng-show="contactForm.query.$error.maxlength">please enter only 250 characters</span>
+              </span>
+            </div>
+            <div class="form-group captch-grp col-xs-8 pad-zero" ng-if="contactcaptcha">
+              <img ng-src='captchaimage/{{captcha_no}}'>
+              <div class="captch-txt" >
+              <input type="text" class="italic-place form-control" name="captcha" placeholder="Enter the characters" ng-model="contact.captcha" required  class="form-control" ng-focus='captchafocus();setUntouched("captcha")'ng-class="{'error':contactForm.captcha.$invalid&&contactForm.captcha.$dirty&&contactForm.captcha.$touched,'success-feild' :contactForm.captcha.$valid&&contactForm.captcha.$dirty&&contactForm.captcha.$touched }" ng-blur="setTouched('captcha')"/>
+              <span class="err-msg"  ng-show="contactForm.captcha.$invalid&&contactForm.captcha.$dirty&&contactForm.captcha.$touched&&!incorrectcaptcha">Please enter the Captcha.</span>
+              <span class="err-msg" ng-show="contactForm.captcha.$invalid&&contactForm.captcha.$dirty&&contactForm.captcha.$touched&&incorrectcaptcha">Incorrect Captcha try again.</span>
+              </div>
+               <img  role='button' src="images/cap-refresh.png" class="refresh" ng-click='captcharefresh();setUntouched("captcha")' alt='refresh'>
+             </div>
+              <div class="col-xs-4 pad-right">
+                <div class="form-field-submit" ng-show="!contact_loader"><button type="submit" name="submit" ng-click="contactsubmit()" class="btn btn-default send-button">Submit</button></div>
+                <img ng-show="contact_loader"  src="../images/ajax-loader.gif"/>
+            </div>
+        <div class='errormessage' flash-message="5000" ></div>
+       </form>    
+        </div>
+        <div class="shortlists-container" ng-show="shortlistData.length">
+          <div class="shortlist-title">
+              <h2>Spaces You Have Shortlisted</h2>
+                <span class="shortlist-navigation">&nbsp;</span>
+            </div>
+            <div class="shortlist-items detail"   ng-show='!deleteshortlist'>
+              <div   class="container slider1" ng-if="!ismobile()">
+              <div class="slide slide-animation-contact"  ng-repeat="data in shortlistdata" ng-hide="!isCurrentSlideIndex($index)">
+                 <div  class="shortlist-item new-chunk"  ng-repeat="sd in data.data" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()">  
+
+                      <div class="shortlist-item-image">
+                          <img ng-if="sd.Image_URL_1__c == null" ng-src="images/no-img.png" style="width: 100%;height: 159px;" alt="Office Space" >
+                             <img ng-if="sd.Image_URL_1__c != null" style="width: 100%;height: 159px;" ng-src="{{sd.Image_URL_1__c}}"  alt="Office Space" >
+                          <span class="photo-count font-icon ng-binding">{{sd.imageArray.length}} Photos</span>
+                          <div class="close-short" ng-click='delfromshortlist(sd._id);setdel($index)'></div>
+                     </div>
+                      <div class="shortlist-item-detail">
+                          <div class="shortlist-item-title">{{truncate1(sd.Total_Area_in_Sq_Ft__c,sd.line_item_category,sd.master_object_id.Master_Type__c)|truncate:28}}</div>
+                          <div class="shortlist-item-location" >{{truncate2(sd.Location__c,sd.City__c,sd.State__c)|truncate:28}}</div>
+                          <div class="shortlist-item-area-and-price" >
+                              <span class="shortlist-item-area">{{sd.Total_Area_in_Sq_Ft__c}} Sqft</span>
+                              <span class="shortlist-item-price" ng-if= "(sd.line_item_category == 'Business Center' || sd.line_item_category == 'Co-Working Space')&&sd.sortlist_type=='Rent' ">
+                                  <span class="price-label">Rent : </span>
+                                  <span class="price"><i class="rs font-icon "> {{sd.Total_Rent__c}}</i><sub>/ Workstation</sub> </span>
+                              </span>
+                              <span class="shortlist-item-price" ng-if= "(sd.line_item_category != 'Business Center' && sd.line_item_category != 'Co-Working Space')&&sd.sortlist_type=='Rent' ">
+                                  <span class="price-label">Rent : </span>
+                                  <span class="price"><i class="rs font-icon "> {{sd.Total_Rent__c}}</i><sub>/ Month</sub> </span>
+                              </span>
+                              <span class="shortlist-item-price" ng-if= "sd.sortlist_type=='Buy' ">
+                                  <span class="price-label">Price : </span>
+                                  <span class="price"><i class="rs font-icon "> {{sd.Total_Price__c}}</i> </span>
+                              </span>
+                          </div>
+                       </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div   class="container slider1" ng-if="ismobile()">
+                  <div class="slide slide-animation-contact shortlist-item" ng-repeat="sd in shortlistdatamobile" ng-hide="!isCurrentSlideIndex($index)">
+                      <div class="shortlist-item-image">
+                          <img ng-if="sd.Image_URL_1__c == null" ng-src="images/no-img.png" style="width: 100%;height: 159px;" alt="Office Space" >
+                             <img ng-if="sd.Image_URL_1__c != null" style="width: 100%;height: 159px;" ng-src="{{sd.Image_URL_1__c}}"  alt="Office Space" >
+                          <span class="photo-count font-icon ng-binding">{{sd.imageArray.length}} Photos</span>
+                          <div class="close-short" ng-click='delfromshortlist(sd._id);setdel($index)'></div>
+                     </div>
+                      <div class="shortlist-item-detail">
+                          <div class="shortlist-item-title">{{sd.Total_Area_in_Sq_Ft__c}} SQFT {{sd.line_item_category}} {{sd.master_object_id.Master_Type__c}}</div>
+                          <div class="shortlist-item-location">{{sd.Location__c}},{{sd.City__c}},{{sd.State__c}}</div>
+                          <div class="shortlist-item-area-and-price" >
+                              <span class="shortlist-item-area">{{sd.Total_Area_in_Sq_Ft__c}} Sqft</span>
+                              <span class="shortlist-item-price" ng-if= "(sd.line_item_category == 'Business Center' || sd.line_item_category == 'Co-Working Space')&&sd.sortlist_type=='Rent' ">
+                                  <span class="price-label">Rent : </span>
+                                  <span class="price"><i class="rs font-icon "> {{sd.Total_Rent__c}}</i><sub>/ Workstation</sub> </span>
+                              </span>
+                              <span class="shortlist-item-price" ng-if= "(sd.line_item_category != 'Business Center' && sd.line_item_category != 'Co-Working Space')&&sd.sortlist_type=='Rent' ">
+                                  <span class="price-label">Rent : </span>
+                                  <span class="price"><i class="rs font-icon "> {{sd.Total_Rent__c}}</i><sub>/ Month</sub> </span>
+                              </span>
+                              <span class="shortlist-item-price" ng-if= "sd.sortlist_type=='Buy'">
+                                  <span class="price-label">Price : </span>
+                                  <span class="price"><i class="rs font-icon "> {{sd.Total_Price__c}}</i> </span>
+                              </span>
+                          </div>
+                      
+                      </div>
+                  </div>
+                  </div>
+             
+                
+               </div>
+            <img ng-show='deleteshortlist'  src="../images/ajax-loader.gif"/>
+            <div class="nav-wrap">
+            <a class=" prev" role="button"  ng-click="prevSlide()"></a>
+            <a class=" next" role="button"  ng-click="nextSlide()"></a>
+          </div>
+         </div>
+          
+      </div>
+      
+    
+ </modalcontact>
+<script type="text/javascript">
+slider=null;
+$(document).ready(function(){
+//$('#contactus input,#contactus textarea').keypress(function () {
+//   alert(1);
+//    el = $(this);
+//    input_value = el.val();
+//    el.prev('.place-label').hide();
+//       
+//});  
+//    
+//    $('#contactus input,#contactus textarea').blur(function () {
+//    el = $(this);
+//    if (el.val() == '') {
+//       el.prev('.place-label').show();
+//    }
+//  });
+    
+     
+});
+
+</script>

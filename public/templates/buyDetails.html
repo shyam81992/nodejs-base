@@ -1,0 +1,1129 @@
+<div class="list-header list-header-details">
+  <div class="container">
+    <div class="">
+      <div class="controls">
+        <div class="filters">                      
+            <div class="filter-container">
+                      <div class="filter">
+                        <span class="text text-uppercase" ng-click="showHideCategory()">Categories</span>
+                        <span class="icon icon-arrow-down filter-icon-down" ng-class="{'active-arrow':IsVisible}"></span>
+                      </div>
+                      <div class="dropdown-menu-arrow"></div>  
+                      <div class="filter-options-dropdown category-dropdown" ng-show="IsVisible">
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Office Space" ng-model="officespace">Office Space</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='sub-category' type="checkbox" ng-change="filterFunction()" data-category="IT parks/Tech Parks" ng-model="itpark">IT parks/Tech Parks</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" class='chk sub-category' ng-change="filterFunction()" data-category="Independent buildings" ng-model="officeindependent">Independent buildings</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" class='chk sub-category' ng-change="filterFunction()" data-category="SEZ" ng-model="sez">SEZ</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Co-working Space" ng-model="coworkingspace">Co-working Space</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Accelerators" ng-model="accelerators">Accelerators</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Incubators" ng-model="incubators">Incubators</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Co-working spaces" ng-model="coworking">Co-working spaces</li>
+                                </ul>                                
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Retail Space" ng-model="retailspace">Retail Space</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Independent" ng-model="retailindependent">Independent</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Building" ng-model="building">Building</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Malls" ng-model="malls">Malls</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Industrial Space" ng-model="industrialspace">Industrial Space</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Industrial Shed" ng-model="industrialshed">Industrial Shed</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Factory" ng-model="factory">Factory</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Warehouses" ng-model="warehouses">Warehouses</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Cold Storage" ng-model="coldstorage">Cold Storage</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Warehouse" ng-model="warehouse">Warehouse</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Commercial Lands" ng-model="commerciallands">Commercial Lands</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input class='chk sub-category' type="checkbox" ng-change="filterFunction()" data-category="Industrial Land" ng-model="commercialindustrialshed">Industrial Land</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase"><input type="checkbox" class='category' ng-change="selectAllSubCategories()" data-category="Business Centers" ng-model="businesscenters">Business Centers</div>
+                            </div>
+                      </div>
+                      
+                      
+                      
+              </div>
+              <div class="filter-container">
+                      <div class="filter" ng-click="showHideBudget()">
+                        <span class="text text-uppercase">Budget</span>
+                        <span class="icon-arrow-down filter-icon-down" ng-class="{'active-arrow':IsVisible1}"></span>
+                      </div>
+                      <div class="dropdown-menu-arrow"></div>
+                      <div class="filter-options-dropdown budget-dropdown" ng-show="IsVisible1">
+                            <div class="range-header">
+                                <input class="box lower-box" placeholder="Min" tabindex="0" data-value="0" data-sample="lower" ng-model="lower" ng-blur="budgetFilter()" ng-keypress="($event.charCode==13)?budgetFilter():return" ng-focus='budgettrans(true)'>
+                                <input class="box upper-box selected" placeholder="Max" tabindex="0" data-value="0" data-sample="upper" ng-model="upper" ng-blur="budgetFilter()" ng-keypress="($event.charCode==13)?budgetFilter(true):return" ng-focus='budgettrans(false)'>
+                            </div>
+                            <div class="range-list-wrapper">
+                              <ul class="lower-list range-list"  data-sample="lower">
+                                    <li class="range-item" data-value="0" data-sample="lower" ng-click="budgetmin($event)">
+                                    0
+                                    </li>
+                                    <li class="range-item" data-value="25000" data-sample="lower" ng-click="budgetmin($event)">
+                                    <span class="icon-rupee"></span>
+                                    25000 +
+                                    </li>
+                                    <li class="range-item" data-value="30000" data-sample="lower" ng-click="budgetmin($event)">
+                                    <span class="icon-rupee"></span>
+                                    30000 +
+                                    </li>
+                                    <li class="range-item" data-value="35000" data-sample="lower" ng-click="budgetmin($event)">
+                                    <span class="icon-rupee"></span>
+                                    35000 +
+                                    </li>
+                                    <li class="range-item" data-value="40000" data-sample="lower" ng-click="budgetmin($event)">
+                                    <span class="icon-rupee"></span>
+                                    40000 +
+                                    </li>
+                                    <li class="range-item" data-value="45000" data-sample="lower" ng-click="budgetmin($event)">
+                                    <span class="icon-rupee"></span>
+                                    45000 +
+                                    </li>                                
+                                </ul>
+                                <ul class="range-list text-right upper-list" style="display:none;" data-sample="upper">
+                                    <!-- <li class="range-item selected current-item" data-value="10000" data-sample="upper">
+                                    <span class="icon-rupee"></span>
+                                    10.0K
+                                    </li> -->
+                                    <li class="range-item" ng-repeat='data in budgetmaxlist' ng-click="budgetmax($event)" data-value="{{data}}" data-sample="upper">
+                                    <span class="icon-rupee"></span>
+                                    {{data}}
+                                    </li>                            
+                                    <li class="range-item" ng-click="budgetmax($event)" data-value="" data-any="true" data-sample="upper">
+                                    Any value
+                                    </li>
+                                </ul>
+                            </div>
+                      </div>
+              </div>
+              <div class="filter-container">
+                  <div class="filter" ng-click="showHideArea()">
+                     <span class="text text-uppercase">Square Feet</span>
+                    <span class="icon-arrow-down filter-icon-down" ng-class="{'active-arrow':IsVisible2}"></span>
+                  </div>
+                  <div class="dropdown-menu-arrow"></div>
+                  <div class="filter-options-dropdown square-feet-dropdown" ng-show="IsVisible2">
+                            <div class="range-header">
+                                <input class="box lower-box-area" placeholder="Min" tabindex="0" data-value="0" data-sample="lower" ng-model="lower2" ng-blur="areaFilter()">
+                                <input class="box upper-box-area selected" placeholder="Max" tabindex="0" data-value="0" data-sample="upper" ng-model="upper2" ng-blur="areaFilter()" ng-keypress="($event.charCode==13)?areaFilter():return">
+                            </div>
+                            <div class="range-list-wrapper">
+                              <ul class="lower-list-area range-list" data-sample="lower">
+                                    <li class="range-item" data-value="0" data-sample="lower" ng-click="areamin($event)">
+                                    0
+                                    </li>
+                                    <li class="range-item" data-value="1000" data-sample="lower" ng-click="areamin($event)">
+                                    <span class="icon-rupee"></span>
+                                    1000 +
+                                    </li>
+                                    <li class="range-item" data-value="2000" data-sample="lower" ng-click="areamin($event)">
+                                    <span class="icon-rupee"></span>
+                                    2000 +
+                                    </li>
+                                    <li class="range-item" data-value="3000" data-sample="lower" ng-click="areamin($event)">
+                                    <span class="icon-rupee"></span>
+                                    3000 +
+                                    </li>
+                                    <li class="range-item" data-value="4000" data-sample="lower" ng-click="areamin($event)">
+                                    <span class="icon-rupee"></span>
+                                    4000 +
+                                    </li>
+                                    <li class="range-item" data-value="5000" data-sample="lower" ng-click="areamin($event)">
+                                    <span class="icon-rupee"></span>
+                                    5000 +
+                                    </li>                                 
+                                </ul>
+                                <ul class="upper-list-area range-list  text-right" style="display:none;" data-sample="upper">
+                                    <!-- <li class="range-item selected current-item" data-value="10000" data-sample="upper">
+                                    <span class="icon-rupee"></span>
+                                    10.0K
+                                    </li> -->
+                                    <li class="range-item" ng-repeat='data in areamaxlist' ng-click="areamax($event)" data-value="{{data}}" data-sample="upper">
+                                    <span class="icon-rupee"></span>
+                                    {{data}}
+                                    </li>                            
+                                    <li class="range-item" ng-click="areamax($event)" data-value="" data-any="true" data-sample="upper">
+                                    Any value
+                                    </li>
+                                </ul>
+                            </div>
+                      </div>
+              </div>
+              <div class="filter-container">
+                  <div class="filter" ng-click="showHideMore()">
+                        <span class="text text-uppercase">More</span>
+                        <span class="icon-arrow-down filter-icon-down" ng-class="{'active-arrow':IsVisible3}"></span>
+                  </div>
+                  <div class="dropdown-menu-arrow"></div>  
+                      <div class="filter-options-dropdown category-dropdown" ng-show="IsVisible3">
+                        <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase">CONSTRUCTION AGE</div>
+                                <ul class="inner-elem">
+                                    <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="0" class="construction-age">Under Construction</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="1" class="construction-age">New Construction</li>
+                                    <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="1-5" class="construction-age">5 Year</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="5-10" class="construction-age">5 - 10 Year</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="10-15" class="construction-age">10 - 15 Year</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="15-20" class="construction-age">15 - 20 Year</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="20-100" class="construction-age">20 Year</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase">Find Spaces Since</div>
+                                <ul class="inner-elem">
+                                    <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="1" class="modified-on">Yesterday</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="7" class="modified-on">Last Week</li>
+                                    <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="14" class="modified-on">Last 2 Week</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="21" class="modified-on">Last 3 Week</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="30" class="modified-on">Last Month</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="60" class="modified-on">Last 2 Months</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="90" class="modified-on">Last 3 Months</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="all" class="modified-on">All</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase">FACILITY</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" ng-model="facility1" data-value="Bareshell" class="facility">Bareshell</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" ng-model="facility2" data-value="WarmShell" class="facility">WarmShell</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" ng-model="facility3" data-value="Plug & Play" class="facility">Plug & Play</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="allFacilities()" ng-model="facility4" data-value="all">All</li>
+                                </ul>
+                            </div>
+                            <div class="filter-options-wrapper">
+                              <div class="filter-options-heading text-uppercase">TRANSACTION TYPE</div>
+                                <ul class="inner-elem">
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="new" class="tansection">New</li>
+                                     <li class="checkbox-tag"><i class="icon-checkbox"></i><input type="checkbox" ng-click="otherFacilities()" data-value="resale" class="tansection">Resale</li>
+                                </ul>
+                            </div>
+
+                      </div>
+              </div>
+              <div class="filter-container reset-filter-wrapper">
+                  <div class="reset-filters" ng-click="resetFilter()">
+                      <i class="icon-reset"></i>
+                      <span class="text text-uppercase">
+                      Reset
+                      </span>
+                  </div>
+              </div>              
+        </div>
+        <div class="subscribe-wrapper">
+                <div class="subscribe-btn" data-toggle="modal" data-target="#alert" ng-click="getalert(true)">
+                    <!-- <span class="icon icon-email-alert"></span> -->
+                    <span class="text text-uppercase">Get Alerts</span>
+                </div>
+        </div> 
+       
+                      
+                          <div class="sort-wrapper" ng-hide="detail">
+                          <div class="dropdown filterView sort">
+                            <div class="dropdown-toggle" data-toggle="dropdown" data-init="true">
+                            <span class="text-preholder">Sort by: </span>
+                            <span class="sorted-text"  >{{sorted_text}}</span>
+
+                            <i class="icon-down-arrow down-arrow-update"></i>
+                            </div>
+                            <ul class="dropdown-menu pull-right sort-menu">
+
+                            <li class="clearfix sort-list-item" ng-repeat="sort_opt in sort_data.availableOptions"  ng-click="listItems(sort_opt)">
+                            <a class="list-sorting selected"   >{{sort_opt.name}}</a>
+                            </li>
+
+                            </ul>
+                            </div>
+                        </div>
+                       
+     <!--    <div class="grid-controls">
+            <button class="btn switch-map-view text-uppercase active" data-title="Map View">
+            Map
+            </button>
+            <button class="btn switch-grid-view text-uppercase" data-title="List View">
+            List
+            </button>
+        </div> -->
+       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-container clearboth">
+	<div class="container">
+    	<div class="row fixed-list-header">
+        	<div class="col-lg-5 col-sm-4 map-canvas-outer" style="height:{{windowHeight - 146}}px">
+            	<div class="map" id="map-canvas" >
+                </div>
+            </div>
+			<div class="col-lg-7 col-sm-8 pad-zero listin-rgtbar">
+            
+            	<div class="list-container" ng-show="listcontainer">                	
+                    <!-- <div class="location-sort-wrapper">
+                    	<div class="location-wrapper">
+                        	<!-- <input type="text" name="location" value="" class="location-input" ng-model="locality" ng-autocomplete="result3" details="details3" options="options3" placeholder="Enter any location" /> 
+                          <input class="location-input" auto-complete ui-items="names" minlength="0" ng-model="locality" placeholder="{{locations}}" ng-change="autocompleterecent()">
+                          
+                            <span class="icon-search" ng-click="newLocationEvent()"></span>
+                        </div>
+                          <div class="sort-wrapper">
+                          <div class="dropdown filterView sort">
+                            <div class="dropdown-toggle" data-toggle="dropdown" data-init="true">
+                            <span class="text-preholder">Sort by: </span>
+                            <span class="sorted-text"  >{{sorted_text}}</span>
+
+                            <i class="icon-down-arrow down-arrow-update"></i>
+                            </div>
+                            <ul class="dropdown-menu pull-right sort-menu">
+
+                            <li class="clearfix sort-list-item" ng-repeat="sort_opt in sort_data.availableOptions"  ng-click="listItems(sort_opt)">
+                            <a class="list-sorting selected"   >{{sort_opt.name}}</a>
+                            </li>
+
+                            </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="results-shortlists-wrapper">
+                    	<ul class="results-shortlists">
+                        	<li class="results cursorpointer {{resultActive}}" ng-click="showList()">
+								
+								<span class="label-wrapper reslt-menu"><span class="count">{{length}}</span><span class="text text-uppercase">Results</span></span>
+                            </li>
+                            <li class="shortlists cursorpointer {{shortlistActive}}" ng-click="showShortlist()">
+								<span class="icon-shortlist sortlisted-pannel"></span>
+								<span class="label-wrapper"><span class="count">{{shorlistCount}}</span><span class="text text-uppercase">Shortlists</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="alert alert-danger" ng-show="no_result">
+                      {{noresult_message}} {{category}}.
+                      </div>
+                    <div class="list  scroll-div" ng-if="list" when-scrolled="loadMore()" style="height:{{windowHeight-203}}px">
+                      <div class="dummy-property" ng-show="dummyProperty" ng-repeat="i in getNumber(number) track by $index">
+                        <div class="image"></div>
+                        <div class="info">
+                          <div class="heading">&nbsp;</div>
+                          <div class="sub-line-1">&nbsp;</div>
+                          <div class="extra-details">
+                            <span class="left">&nbsp;</span>
+                            <span class="right">&nbsp;</span>
+                          </div>
+                          <div class="price">&nbsp;</div>
+                        </div>
+                      </div>
+                      
+	                    <div class="property-container" ng-repeat="data in dataList" ng-mouseover="showInfowFindow(data._id)" ng-mouseleave="hideInfoWindow(data._id)" my-directiv>  
+                       <div class="property-image common-img pull-left cursorpointer" ng-click="getItemDetails(data)">
+                             <img ng-if="data.Image_URL_1__c == null" ng-src="images/no-img.png" style="width: 259px;height: 159px;" alt="Office Space" >
+                             <img ng-if="data.Image_URL_1__c != null" ng-src="{{data.Image_URL_1__c}}"  alt="Office Space" >
+                    <div class="property-image-count"><span class="photo-icon"></span>{{data.imageArray.length}} Photos</div>
+                          </div>
+	                        <div class="property-details pull-left">
+	                            <div class="property-name text-uppercase cursorpointer" ng-click="getItemDetails(data)">
+	                                {{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}}
+	                            </div>
+                              <div class="property-location">
+	                                 {{data.Location__c}},{{data.City__c}},{{data.State__c}}
+	                            </div>
+	                            <div class="property-area-and-price">
+	                                <div class="property-area pull-left">
+                                    {{data.Total_Area_in_Sq_Ft__c}} Sqft
+                                  </div>
+	                                <div class="property-price text-right">
+	                                    <span class="property-rent-or-buy-label">Price :</span>
+	                                    <span class="property-rent-or-buy-price">
+                                     <i class="rs font-icon  ng-binding"> {{data.Total_Price__c}}</i>
+                                      </span>
+	                                </div>
+	                            </div>
+	                            <div class="property-contact-and-addtoshortlist">
+	                               <div class="property-contact pull-left text-uppercase" ng-click="contactrefresh(data._id)" data-toggle="modal" data-target="#contactus">
+                                      Contact
+                                  </div>
+
+                                  
+	                                <div ng-show="!data.btnText" class="property-addtoshortlist sortlist-anim pull-right {{data.shorlistClass}}" ng-click="addToShortlist(data._id)" data-toggle="tooltip" title="{{data.title}}" ng-disabled="sortlistLoader"></div>
+                                  <div ng-show="data.btnText" class="property-addtoshortlist sortlist-anim sortlisted-pannel pull-right" data-toggle="tooltip" ng-click="delFromShortlist(data._id)" title="{{data.title}}"   ng-disabled="sortlistLoader"></div>
+                                  
+
+				            		        </div>
+	                            </div>
+	                          </div>
+                            <div class="slider-list" ng-hide="spinner.hide">
+                              <img src="images/ajax-loader.gif">
+                            </div>
+	                        </div>
+                        
+                    
+                    
+                    <div class="shortlist scroll-div" ng-if="shortlist" style="height:{{windowHeight-203}}px" scrollevent2>
+
+						<div class="property-container" ng-repeat="data in shortlistData track by $index" ng-mouseover="showInfowFindow(data._id)" ng-mouseleave="hideInfoWindow(data._id)" my-directiv>
+						    <div class="property-image pull-left" ng-click="getItemDetails(data)">
+						    	   <img ng-if="data.Image_URL_1__c ==null " ng-src="images/no-img.png" style="width: 259px;height: 158px;" alt="Office Space" >
+                      <img ng-if="data.Image_URL_1__c != null" ng-src="{{data.Image_URL_1__c}}"  alt="Office Space" >
+						        <div class="property-image-count"><span class="photo-icon"></span>{{data.imageArray.length}} Photos</div>
+						    </div>
+						    <div class="property-details pull-left">
+						    	  <div class="property-name text-uppercase cursorpointer" ng-click="getItemDetails(data)">
+                        {{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}}
+                    </div>
+						        <div class="property-location">
+							        {{data.Location__c}},{{data.City__c}},{{data.State__c}}
+						        </div>
+						        <div class="property-area-and-price">
+						         	<div class="property-area pull-left">
+						            	{{data.Total_Area_in_Sq_Ft__c}} Sqft
+						            </div>
+						           
+						            <div class="property-price  text-right" ng-if="data.sortlist_type=='Rent'">
+                                      <span class="property-rent-or-buy-label">Rent :</span>
+                                      <span ng-if= "data.line_item_category == 'Business Center' || data.line_item_category == 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Rent__c}} </i><sub>/ Workstation</sub></span>
+                                      <span ng-if= "data.line_item_category != 'Business Center' && data.line_item_category != 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Rent__c}} </i><sub>/ Month</sub></span>
+                          </div>
+                          <div class="property-price  text-right" ng-if="data.sortlist_type=='Buy'">
+                            <span class="property-rent-or-buy-label">Price :</span>
+                            <span class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.Total_Price__c}}</i></span>
+                          </div>
+						        </div>
+						        <div class="property-contact-and-addtoshortlist">
+                      <div class="property-contact pull-left text-uppercase" ng-click="contactrefresh(data._id)" data-toggle="modal" data-target="#contactus">
+                                      Contact
+                                  </div>
+                          <div class="comparenow" id="compareid" ng-if="comparestate(data._id)" data-toggle="tooltip" title="Add to compare" role='button' ng-click='addcompare(data)'>compare</div>
+                        <div class="comparenow cmpadded" id="compareid" ng-if="!comparestate(data._id)" data-toggle="tooltip" title="Remove from compare" role='button' ng-click='removecompare(data._id)'>compared</div>
+						            <div class="property-addtoshortlist sortlisted-pannel pull-right" ng-click="delFromShortlist(data._id)" title="Remove from Shortlist" ng-disabled="sortlistLoader">
+
+						            	
+						            </div>
+                        
+						        </div>
+						    </div>	
+						</div>
+           <div class="popup-compare " ng-class="{'popup-compare-enable' : comparearr.length }">
+                    <h3  ng-click="changeClass($event)" >Compare <i>{{comparearr.length}}</i></h3>
+                     
+                    <ul scrollevent2>
+                    <li class="content-list" ng-repeat="data in comparearr" ng-show='!compareloader2'>
+                    <div class="img-lst" ng-show='!compareloader[data._id]'>
+                    <img ng-if="data.Image_URL_1__c == null" ng-src="images/no-img.png" style="max-width:100%" alt="Office Space" width="70" height="60">
+                    <img ng-if="data.Image_URL_1__c != null" ng-src="{{data.Image_URL_1__c}}"  alt="Office Space" style="max-width:100%" width="70" height="60">
+                    </div>    
+                    <div class="right-conto" ng-show='!compareloader[data._id]'>
+                    <a href="#"><h4>{{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}} ({{data.Type_of_Transaction__c}})</h4></a>
+                    <p>{{data.Location__c}},{{data.City__c}},{{data.State__c}}</p>
+                    <div class="price-details">
+                    <span class="sqft col-xs-5 pad-zero">{{data.Total_Area_in_Sq_Ft__c}} Sqft</span>
+                    <span class="prc col-xs-6 pad-left rs" ng-if="data.sortlist_type=='Rent'">{{data.Total_Rent__c}}</span>
+                    <span class="prc col-xs-6 pad-left rs" ng-if="data.sortlist_type=='Buy'">{{data.Total_Price__c}}</span>
+                    <span class="remov col-xs-1 pad-zero" role='button' ng-click='removecompare(data._id)'> </span>
+                    </div>    
+                    </div>
+                    <img src="images/ajax-loader.gif" ng-show='compareloader[data._id]'> 
+                    </li>
+                    <img src="images/ajax-loader.gif" ng-show='compareloader2' class="loader-cmp">    
+                    </ul>
+                     <div class="btn-div">
+                      <input type="button" class="remo-cls pull-left" ng-click='removeAllCompared()'  value="Remove All">   
+                        <input type="button" class="remo-cls cmpr pull-right" ng-click='showcompare()' value="Compare">       
+                      </div>     
+                  </div>
+                     <div class="overly-cmp"></div>
+					</div>   
+
+          <div class="loading-listprp" ng-show="list_loader">
+            <img src="/images/loadinlist.png"/>
+            <p>{{loadingmsg}} Results. One Moment Please</p>
+            <img src="/images/lisingdot.gif"/>    
+          </div>                  
+                </div>       
+                <!-- List Container Ends -->
+                
+                <div class="detail-container" style="height:{{windowHeight-130}}px;min-height:{{windowHeight-130}}px" ng-show="detail">
+                    <div id="detail-tabs">
+                          <ul class="nav detail-tabs-list">
+                            <li><a data-href="#overview" ng-click="scrollTo('overview')" class="menu-tab text-uppercase active cursorpointer">Overview</a></li>
+                            <li><a data-href="#amenity" ng-click="scrollTo('amenity')" class="menu-tab text-uppercase cursorpointer">Amenities</a></li>
+                            <li><a data-href="#floorplans" ng-click="scrollTo('floorplans')"  class="menu-tab text-uppercase cursorpointer">Floor Plans</a></li>
+                            <li><a data-href="#nearbyinfo" ng-click="scrollTo('nearbyinfo')" class="menu-tab text-uppercase cursorpointer">Nearby Info</a></li>
+                            <li class="back-to-search"><a class="text-uppercase cursorpointer" ng-click="showList()">Back To Search</a></li>
+                          </ul>
+                          <div class="detail scroll-event scroll-div" style="height:{{windowHeight - 160}}px">   
+                          	<div id="overview" class="property-image-container">
+	                          	<carousel interval="myInterval">
+                                <slide ng-repeat="slide in slides" active="slide.active">
+                                  <img ng-src="{{slide.image}}">
+                                  <div class="carousel-caption">
+                                    <h4></h4>
+                                  </div>
+                                </slide>
+                              </carousel>           
+                            </div>
+                            <div class="description-container">
+                            	<div class="property-name">
+                                	<h1>{{dataDetail.Total_Area_in_Sq_Ft__c}} SQFT {{dataDetail.line_item_category}} {{dataDetail.master_object_id.Master_Type__c}}</h1>
+                                </div>
+                                <div class="property-location">
+                                	{{dataDetail.Location__c}},{{dataDetail.City__c}},{{dataDetail.State__c}}
+                                </div>
+                                <div class="property-price-area-social">
+                                	<div class="property-area">
+                                    	{{dataDetail.Total_Area_in_Sq_Ft__c}} Sqft 
+                                    </div>
+									                     <div class="property-price" >
+                                        <span class="property-rent-or-buy-label">Price :</span>
+                                      <span  class="property-rent-or-buy-price"><i class="rs font-icon ">{{dataDetail.Total_Price__c}} </i></span>
+                                     
+                                    </div>
+                                     <div class="social-share">
+                                       <span class="social-share-label">Share :</span>
+                                         <span class="social-share-icons"></span>
+                                        <a href=""
+                                              socialshare
+                                              socialshare-provider="facebook"
+                                              socialshare-text="{{dataDetail.Total_Area_in_Sq_Ft__c}} SQFT {{dataDetail.line_item_category}} {{dataDetail.master_object_id.Master_Type__c}}"
+                                              socialshare-url="{{property_url}}">
+                                              <img src="images/facebook.png" width="30" height="30" alt="Facebook">
+                                              </a>
+
+                                          <a href=""
+                                              socialshare
+                                              socialshare-provider="twitter"
+                                              
+                                              socialshare-url="{{property_url}}"
+                                              
+                                              >
+                                              <img src="images/twitter.png" width="30" height="30">
+                                              </a>  
+
+                                            <!--  <a href=""
+                                              socialshare
+                                              socialshare-provider="google+"
+                                              socialshare-text="{{dataDetail.Area_in_Sq_Ft__c}} SQFT {{dataDetail.RecordTypeName}},{{dataDetail.Sub_Category__c}} IN {{dataDetail.Location__c}}"
+                                              socialshare-media="{{dataDetail.Image_URL_1__c}}"
+                                              socialshare-url="{{property_url}}">
+                                              
+                                              G+ 
+                                              </a> -->
+                                                
+                                               <a href=""
+                                              socialshare
+                                              socialshare-provider="linkedin"
+                                              socialshare-text="{{dataDetail.Total_Area_in_Sq_Ft__c}} SQFT {{dataDetail.line_item_category}} {{dataDetail.master_object_id.Master_Type__c}}"
+                                              socialshare-url="{{property_url}}"
+                                              >
+                                              
+                                              <img src="images/linkedin.png" width="30" height="30">
+                                              </a>
+                                              
+                                              <a class="hidden-sm hidden-md hidden-lg" href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Wh</a>  
+                                             
+                                    
+                                </div>
+                                </div>
+                                <div class="property-description hide">									
+									                 {{dataDetail.Description__c}}
+                                </div>
+<!--
+                                          <div class="property-contact-and-addtoshortlist">
+                      <div class="property-contact pull-left text-uppercase" ng-click="contactrefresh(dataDetail._id)" data-toggle="modal" data-target="#contactus">
+                                      Contact
+                                  </div>
+                                  <div ng-if="!data.btnText" class="property-addtoshortlist sortlist-anim pull-right {{data.shorlistClass}}" ng-click="addToShortlist(data._id)" data-toggle="tooltip"></div>
+                                  <div ng-if="data.btnText" class="property-addtoshortlist sortlist-anim sortlisted-pannel pull-right" ng-click="delFromShortlist(data._id)"></div>
+                                  
+                    </div>
+-->
+                                
+                                <div  class="property-block-information" id="facility">
+                                  <h2 class="line-title"><span>Facility Information</span><hr/></h2>
+                                    <div class="property-block-information-items">
+                                      <ul>
+                                          <li   
+                                          ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" class="property-block-information-item" >
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Workstation_Details__c}}">
+                                                <img src="images/detail-page-icons/facilities/Work-Stations.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.No_of_Workstations__c }}</span>
+                                                    <span class="property-block-information-item-title-text">Work Stations</span>
+                                                </span>                       
+                                            </li>
+                                            <li  ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" class="property-block-information-item" >
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Closed-Managers-Cubicle.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Closed_Manager_Cubiles__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Closed Manager Cubicles</span>
+                                                </span>                       
+                                            </li>
+                                            <li   ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" class="property-block-information-item" >
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Open-Managers-Cubicle.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Open_Manager_Cubicles__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Open Manager Cubicles</span>
+                                                </span>                       
+                                            </li>
+                                            <li ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" class="property-block-information-item"  >
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Conference_Room_Details__c}}">
+                                                <img src="images/detail-page-icons/facilities/Conference-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Conference_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Conference Room</span>
+                                                </span> 
+                                                                     
+                                            </li>
+                                            <li class="property-block-information-item"  ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" >
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Board_Room_Details__c}}"><img src="images/detail-page-icons/facilities/Board-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Board Room</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>
+                                            </li>
+                                            <li class="property-block-information-item"  ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" >
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Discussion_Room_Details__c}}"><img src="images/detail-page-icons/facilities/Discussion-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Discussion_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Discussion Room</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>                   
+                                            </li>
+                                            <li class="property-block-information-item"  ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Reception.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Reception__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Reception</span>
+                                                </span>
+                                            </li>
+                                            <li class="property-block-information-item"  ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'" >
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Training-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Training_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Training Room</span>
+                                                </span>                       
+                                            </li>
+                                            
+                                            <li class="property-block-information-item" ng-if= "dataDetail.line_item_category != 'Warehouse' || 
+                                            dataDetail.line_item_category != 'Cold Storage' || 
+                                            dataDetail.line_item_category != 'Commercial Land'  "  >
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Pantry_Details__c}}"><img src="images/detail-page-icons/facilities/Pantry.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Pantry</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>                  
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= "dataDetail.line_item_category != 'Warehouse' || 
+                                            dataDetail.line_item_category != 'Cold Storage' || 
+                                            dataDetail.line_item_category != 'Commercial Land'  ">
+                                              <span data-toggle="tooltip" title="{{dataDetail.Cafeteria_Details__c}}" class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Cafeteria.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Cafeteria</span>
+                                                </span>
+                                          <span class="property-block-information-item-subtitle"></span>
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Vendor_Interview_Room_Details__c}}"><img src="images/detail-page-icons/facilities/Vendor-Interview-room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Vendor_Interview_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Vendor/Interview Room</span>
+                                                </span>
+                                                <span class="property-block-information-item-subtitle"></span>                     
+                                            </li>
+                                            <li class="property-block-information-item" ng-if="dataDetail.Lab_Room__c != ''">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Lab-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Lab_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Lab Room</span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" nng-if= "dataDetail.line_item_category == 'Office Space'  || dataDetail.line_item_category == 'Business Center'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Server-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Server_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Server Room</span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= "dataDetail.line_item_category != 'Commercial Land' ">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Electrical.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Electrical_UPS_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Electrical/UPS Room</span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= "dataDetail.line_item_category != 'Commercial Land' ">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Store-Room.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Storage_Room__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Storage Room</span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= "dataDetail.line_item_category != 'Commercial Land' ">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/facilities/Restrooms.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.Restrooms__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Restrooms</span>
+                                                </span>                       
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                 <div class="property-block-information" id="commercial">
+                                  <h2 class="line-title"><span>Commercials</span><hr/></h2>
+                                    <div class="line-blocks">
+                                      <ul>
+                                          <li  ng-class-odd="'odd'" ng-class-even="'even'" class="line-block " >
+                                            <span class="line-block-label">Total Price :</span>
+                                                <span class="line-block-value">{{dataDetail.Total_Price__c}}</span>
+                                            </li>     
+
+                                          <li  ng-class-odd="'odd'" ng-class-even="'even'" class="line-block " >
+                                              <span class="line-block-label">Price Per SQFT :</span>
+                                                <span class="line-block-value">{{dataDetail.Price_per_SQFT_Land_Area__c}}</span>
+                                            </li>
+                                            <li ng-class-odd="'odd'" ng-class-even="'even'" class="line-block " ng-if= " dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="line-block-label">Transaction Type : </span>
+                                                <span class="line-block-value">{{dataDetail.Transaction_Type__c}}</span>
+                                            </li>
+                                           
+                                                                                  
+                                        </ul>
+                                    </div>
+
+                                 </div>
+                                 
+                                 <div class="property-block-information" id="property">
+                                  <h2 class="line-title"><span>Property Information</span><hr/></h2>
+                                    <div class="property-block-information-items">
+                                      <ul>
+
+                                          <li class="property-block-information-item" ng-if= " dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/Property Information/sqft.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"> {{dataDetail.master_object_id.Project_Area_in_Sq_Ft__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Project Area in Sq ft </span>
+                                                </span>                       
+                                            </li>
+                                              <li class="property-block-information-item" ng-if= " dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/Property Information/Towers.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"> {{dataDetail.master_object_id.No_of_Towers__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Towers </span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= " dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/Property Information/wings-per-tower.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"> {{dataDetail.master_object_id.No_of_Wings_Per_Tower__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Wings per Tower </span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= " dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/Property Information/floors-per-wing.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"> {{dataDetail.master_object_id.No_of_Floors_Per_Wing__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Floors per Wing </span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if= " dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/Property Information/units-per-floor.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"> {{dataDetail.master_object_id.Units_Per_Floor__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Units per Floor </span>
+                                                </span>                       
+                                            </li>                             
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="property-block-information" id="amenity">
+                                  <h2 class="line-title"><span>Amenities</span><hr/></h2>
+                                    <div class="property-block-information-items">
+                                      <ul>
+                                          <li class="property-block-information-item" ng-if="Power_Supply__c == 'Available' ">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Power_Supply_Details__c}}"><img src="images/detail-page-icons/amenities/Power-Supply.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Power Supply</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>                    
+                                            </li>
+
+                                            <li class="property-block-information-item" ng-if="dataDetail.Car_Two_Wheeler_Parking__c == 'Available' && dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Car_Parking_Details__c}}"><img src="images/detail-page-icons/amenities/Car-Parking.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.No_of_Car_Parking__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Car Parking</span>
+                                                </span>
+                                                  <span class="property-block-information-item-subtitle">
+                                                  </span>
+                                            </li>
+                                            <li class="property-block-information-item" ng-if="dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Two_Wheeler_Parking_Details__c}}"><img src="images/detail-page-icons/amenities/Two-Wheeler-Parking.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.No_of_Two_Wheeler_Parking__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Two Wheeler Parking</span>
+                                                </span>
+                                                  <span class="property-block-information-item-subtitle">
+                                                </span>
+                                            </li>
+                                            <li class="property-block-information-item" 
+                                            ng-if="dataDetail.Networking_and_Cabling__c == 'Available'&& dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Networking_and_Cabling_Details__c}}"><img src="images/detail-page-icons/amenities/Networking-and-Cabling.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Networking and Cabling</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>                    
+                                            </li>
+                                           <li class="property-block-information-item" ng-if="dataDetail.Air_Conditioning__c == 'Available' && dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Air_Conditioning_Details__c}}"><img src="images/detail-page-icons/amenities/Air-Conditioning.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Air Conditioning</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>                    
+                                            </li>
+                                            <li class="property-block-information-item" ng-if="dataDetail.Fire_Exit__c == 'Available' && dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/amenities/Fire-Exit.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Fire Exit</span>
+                                                </span>   
+                                                                   
+                                            </li>
+                                            <li class="property-block-information-item" ng-if=" dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon" data-toggle="tooltip" title="{{dataDetail.Elevator_Description__c}}"><img src="images/detail-page-icons/amenities/Elevators.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number">{{dataDetail.No_of_Elevators__c}}</span>
+                                                    <span class="property-block-information-item-title-text">Elevators</span>
+                                                </span>   
+                                                <span class="property-block-information-item-subtitle"></span>                    
+                                            </li>
+                                               <li class="property-block-information-item" 
+                                            ng-if="dataDetail.Fire_Fighting_Equipments__c == 'Available' && dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/amenities/Fire-Fighting-Equipments.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">Fire Fighting Equipments</span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" 
+                                            ng-if="dataDetail.X100_DG_Backup_Power__c == 'Available' && dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/amenities/DG-Backup-power.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">100% DG Backup Power</span>
+                                                </span>                       
+                                            </li>
+                                            <li class="property-block-information-item" ng-if="dataDetail.X24_7_Common_sec_Maint_Support__c == 'Available' && dataDetail.line_item_category != 'Commercial Land'">
+                                              <span class="property-block-information-item-icon"><img src="images/detail-page-icons/amenities/Maintenance.png" /></span>
+                                                <span class="property-block-information-item-title">
+                                                  <span class="property-block-information-item-title-number"></span>
+                                                    <span class="property-block-information-item-title-text">24/7 Common Security & Maintenance Support</span>
+                                                </span>                       
+                                            </li>
+                                                                                
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="property-block-information" id="floorplans">
+                                	<h2 class="line-title"><span>Floor Plans</span><hr/></h2>
+                                    <div class="floor-plans-wrapper">
+                                    	<carousel interval="myInterval">
+                                        <slide ng-repeat="slide in floorPlan|limitTo:1" active="slide.active">
+                                          <img ng-src="{{slide.image}}">
+                                          <div class="carousel-caption">
+                                            <h4></h4>
+                                          </div>
+                                        </slide>
+                                      </carousel>
+                                    </div>
+                                </div>
+                                
+                             <div class="property-block-information sudo-padding" id="nearbyinfo">
+                                  <h2 class="line-title"><span>Nearby Info</span><hr/></h2>
+                                    <div class="nearby-info-wrapper">
+                                      <div class="nearby-info-block">
+                                          <span class="nearby-info-block-category airport">Airport</span>
+                                            <ul class="nearby-info-block-place-lists">
+                                              <li class="nearby-info-block-place">
+                                                  <span class="nearby-info-block-place-title">Bengaluru International Airport</span>
+                                                    <span class="nearby-info-block-place-distance">{{dataDetail.Airport__c}}</span>
+                                                </li>                                               
+                                            </ul>
+                                        </div>
+                                        <div class="nearby-info-block">
+                                          <span class="nearby-info-block-category train-station">Train Stations</span>
+                                            <ul class="nearby-info-block-place-lists">
+                                              <li class="nearby-info-block-place">
+                                                  <span class="nearby-info-block-place-title">{{dataDetail.Railway__c}}</span>
+                                                    <span class="nearby-info-block-place-distance"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="nearby-info-block">
+                                          <span class="nearby-info-block-category bus-station"> Hospital</span>
+                                            <ul class="nearby-info-block-place-lists">
+                                              <li ng-repeat="hos in hospital" class="nearby-info-block-place">
+                                                
+                                                  <span class="nearby-info-block-place-title">{{hos[0]}}</span>
+                                                    <span class="nearby-info-block-place-distance">{{hos[1]}}</span>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                         <div class="nearby-info-block">
+                                          <span class="nearby-info-block-category bus-station"> Hotel</span>
+                                            <ul class="nearby-info-block-place-lists">
+                                              <li ng-repeat="hot in hotel" class="nearby-info-block-place">
+                                                  <span class="nearby-info-block-place-title">
+                                                      {{hot[0]}}
+                                                  </span>
+                                                    <span class="nearby-info-block-place-distance">{{hot[1]}}</span>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                         <div class="nearby-info-block">
+                                          <span class="nearby-info-block-category bus-station"> Mall</span>
+                                            <ul  ng-repeat="mall in malls" class="nearby-info-block-place-lists">
+                                              <li class="nearby-info-block-place">
+                                                  <span class="nearby-info-block-place-title">
+                                                    {{mall[0]}}
+                                                  </span>
+                                                    <span class="nearby-info-block-place-distance">{{mall[1]}}</span>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="property-contact-and-addtoshortlist">
+                      <div class="property-contact pull-left text-uppercase" ng-click="contactrefresh(dataDetail._id)" data-toggle="modal" data-target="#contactus">
+                                      Contact
+                                  </div>
+                         <!--  <div class="comparenow" ng-if="comparestate(data._id)" data-toggle="tooltip" title="Add to compare" role='button' ng-click='addcompare(data)'>compare</div>
+                        <div class="comparenow cmpadded" ng-if="!comparestate(data._id)" data-toggle="tooltip" title="Remove from compare" role='button' ng-click='removecompare(data._id)'>compared</div> -->
+						           <div ng-show="!dataDetail.btnText" class="property-addtoshortlist sortlist-anim pull-right {{dataDetail.shorlistClass}}" ng-click="addToShortlist(dataDetail._id)" data-toggle="tooltip" title="{{dataDetail.title}}"></div>
+                          <div ng-show="dataDetail.btnText" class="property-addtoshortlist sortlist-anim sortlisted-pannel pull-right" data-toggle="tooltip" ng-click="delFromShortlist(dataDetail._id)" title="{{dataDetail.title}}" ></div>
+
+						            	
+						            </div>
+                        
+						        </div>
+                                
+                            </div>
+                          </div>
+                        </div>
+                    </div><!-- Detail Container Ends -->
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='contactform' ng-include="'../templates/contact.html'" ng-controller="contactController"></div>
+
+
+<div id="compare" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Contact Us</h4>
+      </div>
+      
+      <div class="modal-body">
+          <div class="compare" style="color:black">{{comparearr[0]._id}}<button ng-show="comparearr[0]==null" data-dismiss="modal" type="button" >Add</button><button ng-show="comparearr[0]!=null" ng-click="removecompare(0)" type="button" >Remove</button></div>
+          <div class="compare" style="color:black">{{comparearr[1]._id}}<button ng-show="comparearr[1]==null" data-dismiss="modal" type="button" >Add</button><button ng-show="comparearr[1]!=null" ng-click="removecompare(1)" type="button" >Remove</button></div>
+          <div class="compare" style="color:black">{{comparearr[2]._id}}<button ng-show="comparearr[2]==null" data-dismiss="modal" type="button" >Add</button><button ng-show="comparearr[2]!=null" ng-click="removecompare(2)" type="button" >Remove</button></div>
+          <div class="compare" style="color:black">{{comparearr[3]._id}}<button ng-show="comparearr[3]==null"  data-dismiss="modal" type="button" >Add</button><button ng-show="comparearr[3]!=null" ng-click="removecompare(3)" type="button" >Remove</button></div>
+           <div class="compare" style="color:black"><a ng-click="compare()"  type="button" >compare</a></div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div id="alert" class="modal fade" role="dialog">
+  <div class="modal-dialog"> 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Get Alert</h4>
+        <h3>Get email alerts whenever properties matching your 
+          requirements hit the market.</h3>
+      </div>
+      <div class="modal-body clearfix" style="color:black">
+        <div class="col-sm-12">
+          <form role="form"  name="myForm" ng-submit="subscribe(myForm);" novalidate>
+            <div class="row">
+              <div class="col-xs-12 col-sm-8 col-lg-8">
+                <h2>properties for rent</h2>
+              </div>
+              <div class="col-lg-4 col-sm-4 col-xs-12">
+                <button type="button" class="btn btn-default alert-edit pull-right" ng-show="alertcontent" ng-click="alertcontent=!alertcontent;
+           mobileemail=false;alertlogin=$scope.login;validblur={};">Edit</button>
+              </div>
+            </div>
+            <div ng-show="alertcontent">
+              <div class="email-alert-contents">
+                <div class="compare email-location" ng-show="alert.location">{{alert.location}}</div>
+                <div class="compare email-category" ng-show="alert.category">{{alert.category}}</div>
+                <div class="compare email-area" ng-show="alert.area">{{alert.area}} Sqrt</div>
+                <div class="compare email-budget" ng-show="alert.budget">Rs {{alert.budget}}</div>
+                <!--<div class="compare email-budget" style="color:black" ng-show="alert.budget">{{alert.budget}}</div>--> 
+              </div>
+              <h2>Email Frequency</h2>
+              <div class="filter-options-heading text-uppercase">
+                <div class="btn-group clearfix" data-toggle="buttons">
+                  <label class="btn active css-label background-color">
+                    <input type="radio" class="css-checkbox ng-pristine ng-untouched ng-valid" name="list_property_for" ng-model="listProperty.list_property_for" id="lease" value="rent">
+                    Daily </label>
+                  <label class="btn css-label background-color">
+                    <input type="radio" class="css-checkbox ng-pristine ng-untouched ng-valid" name="list_property_for" ng-model="listProperty.list_property_for" id="rent" value="lease">
+                    Weekly </label>
+                </div>
+              </div>
+                <div ng-if="mobileemail">
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="alert.mobilenumber" name="mobilenumber" placeholder="Mobilenumber" ng-pattern="/^[0-9]{10}$/" required />
+                  <span style="color:red" ng-show="myForm.mobilenumber.$dirty||alertsubmit"> <span style="color:red" ng-show="myForm.mobilenumber.$error.required">Please enter your Mobile number.</span> <span style="color:red"  ng-show="myForm.mobilenumber.$error.pattern">Sorry, You have entered an Invalid Phone Number.</span> </span> </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" ng-model="alert.email" name="email" placeholder="Email" required />
+                  <span style="color:red" ng-show="myForm.email.$dirty||alertsubmit"><span style="color:red" ng-show="myForm.email.$error.required">Please enter your Email Address.</span> <span  style="color:red" ng-show="myForm.email.$error.email">Sorry, you have entered an invalid Email Address.</span></span> </div>
+              </div>
+             
+              <span ng-show="!alertlogin">
+              <button type="button" class="btn btn-default send-button" ng-click="openlogin()">Login to Get Alert</button>
+              </span>
+              <span ng-show="alertlogin">
+              <span ng-show="!alert_loader">
+              <button type="submit" class="btn btn-default send-button"  >Subscribe</button>
+              </span>
+              <span ng-show="alert_loader" >
+              <center><img src="../images/ajax-loader.gif"/></center>
+              </span>
+              </span>
+              <span ng-if="!login" ng-show="alertlogin&&!alert_loader">
+              <button type="button" class="btn btn-default send-button"  ng-click="getmobemail()" >Cancel</button>
+              </span>
+            </div>
+          </form>
+          <!--edit-rent-details-->
+          <form role="form" name="form1"  novalidate>
+            <div class="edit-rent-alert-details" ng-show="!alertcontent">
+              <div class="row">
+                <p class="col-sm-12 col-xs-12 col-md-12">Location</p>
+                <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <input type="text" name="location" value="" class="location-input no-isotope" ng-model="location" ng-autocomplete="result3" details="details3" options="options3" placeholder="Enter any location" required ng-class="{'error':(form1.location.$invalid)&&(form1.location.$dirty||alertedit)}"/>
+                  <span class="icon-search" ng-click="newLocationEvent()"></span> <span style="color:red" ng-show="form1.location.$dirty||alertedit"></span> <span style="color:red"  ng-show="form1.location.$error.required">Please enter your location.</span> </label>
+              </div>
+              <div class="row">
+                <p class="col-sm-12 col-xs-12 col-md-12">Area</p>
+                <label class="col-sm-6 col-xs-6 col-md-6">
+                  <input type="text" name="area1"  placeholder="Enter Min Area" ng-model="lower2" ng-pattern="/^[0-9]*$/" ng-class="{'error':(form1.area1.$invalid)&&(form1.area1.$dirty||alertedit)}"/>
+                  <span style="color:red" ng-show="form1.area1.$dirty||alertedit"> <span style="color:red"  ng-show="form1.area1.$error.pattern">Sorry, You have entered an Invalid Number</span> </span> </label>
+                <label class="col-sm-6 col-xs-6 col-md-6">
+                  <input type="text" name="area2"  placeholder="Enter Max Area" ng-model="upper2" ng-pattern="/^[0-9]*$/" ng-class="{'error':(form1.area2.$invalid)&&(form1.area2.$dirty||alertedit)}"/>
+                  <span style="color:red" ng-show="form1.area2.$dirty||alertedit"> <span style="color:red"  ng-show="form1.area2.$error.pattern">Sorry, You have entered an Invalid Number</span> <span style="color:red"  ng-show="checkarea()">Max Area sould be greater than Min Area</span> </span> </label>
+              </div>
+              <div class="row">
+                <p class="col-sm-12 col-xs-12 col-md-12">Budget</p>
+                <label class="col-sm-6 col-xs-6 col-md-6">
+                  <input type="text" name="budget1"  placeholder="Enter Min Budget" ng-model="lower" ng-pattern="/^[0-9]*$/" ng-class="{'error':(form1.budget1.$invalid)&&(form1.budget1.$dirty||alertedit)}"/>
+                  <span style="color:red" ng-show="form1.budget1.$dirty||alertedit"> <span style="color:red"  ng-show="form1.budget1.$error.pattern">Sorry, You have entered an Invalid Number</span> </span>
+                </label>
+                
+                <label class="col-sm-6 col-xs-6 col-md-6">
+                  <input type="text" name="budget2"  placeholder="Enter Max Budget" ng-model="upper" ng-pattern="/^[0-9]*$/" ng-class="{'error':(form1.budget2.$invalid)&&(form1.budget2.$dirty||alertedit)}"/>
+                  <span style="color:red" ng-show="form1.budget2.$dirty||alertedit"> <span style="color:red"  ng-show="form1.budget2.$error.pattern">Sorry, You have entered an Invalid Number</span> <span style="color:red"  ng-show="checkbudget()">Max Budget sould be greater than Min Budget</span> </span> </label>
+              </div>
+              <div>
+                <select kendo-multi-select k-options="selectOptions" k-ng-model="categoryArray">
+                </select>
+              </div>
+              <div>
+                <button type="button" ng-click="getalert(false);" ng-disabled="form1.location.$error.required||form1.area1.$error.pattern||form1.area2.$error.pattern||form1.budget1.$error.pattern||form1.budget2.$error.pattern||checkbudget()||checkarea()"class="btn btn-default send-button" >save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div  flash-message="3000" ></div>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.filter-container').on('keydown', '.upper-box-area, .upper-box, .lower-box-area, .lower-box', function(e){-1!==$.inArray(e.keyCode,[46,8,9,27,13,110,190])||/65|67|86|88/.test(e.keyCode)&&(!0===e.ctrlKey||!0===e.metaKey)||35<=e.keyCode&&40>=e.keyCode||(e.shiftKey||48>e.keyCode||57<e.keyCode)&&(96>e.keyCode||105<e.keyCode)&&e.preventDefault()});
+  $(".scroll-event").mCustomScrollbar({
+          
+          callbacks:{
+            
+            whileScrolling:function(){ 
+
+              $("h2.line-title").each(function(){
+                                               
+                var offsetObj = $(this).offset();
+                  
+                
+                if(offsetObj.top < 295 && offsetObj.top > 240){
+                  var elementId = $(this).parent().attr("id");
+                  
+                  $('.menu-tab').each(function(){
+                    var element = $(this).data("href");
+                   
+                    if(element == "#"+elementId){     
+                      $('.menu-tab').removeClass("active ");            
+                      $(this).addClass("active");
+                    }
+                  }); 
+
+                }
+                if(offsetObj.top < 2479 && offsetObj.top > 1800){
+                  $('.menu-tab').removeClass("active ");  
+                  $('.menu-tab[data-href="#overview"]').addClass("active");
+                }              
+
+              });  
+            },
+            alwaysTriggerOffsets:false
+          }
+        });
+})
+
+  $(document).ready(function() { 
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' }); 
+    $('.hide-footer').addClass('ng-hide');
+    $('.container').css('width','99%');
+      $('body').addClass('fludid') 
+  });
+</script>

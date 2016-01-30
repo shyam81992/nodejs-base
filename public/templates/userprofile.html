@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userprofile">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commercio | Home</title>
+<!-- Bootstrap core CSS -->
+<link href="stylesheets/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+<link href="stylesheets/styles.css" rel="stylesheet">
+<!-- flashmessage -->
+<link type="text/css" rel="stylesheet" href="stylesheets/angular-flash.css" />
+<!-- <link href="stylesheets/ng-scrollbar.css" rel="stylesheet"> -->
+<!-- Custom CSS -->
+<link href="stylesheets/screen.css" rel="stylesheet">
+<link href="stylesheets/custom.css" rel="stylesheet">
+  <style>
+    .cropArea {
+      background: #E4E4E4;
+      overflow: hidden;
+      width:500px;
+      height:350px;
+    }
+  </style>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<!--Outer wrapper Starts-->
+<div id="outer-wrapper">
+<!--Header starts-->
+<header ng-include="'../templates/header.html'" ng-controller="loginCtrl" class="floating-bar"></header>
+  
+<!--Header ends-->
+
+<div ng-controller="TabsCtrl" class="container">
+  <modal title="Edit Profile" visible="profEdit">
+      <form role="form" method="post"  name="myform" enctype="multipart/form-data" novalidate>
+      <div class="form-group" ng-class="{error: showValidationMessages && myform.firstname.$invalid }">
+        <label>Firstname</label>
+        <input type="text" class="form-control" ng-model="userdetails.first_name" name="firstname"  required >
+        <span ng-show="showValidationMessages && myform.firstname.$error.required" class="help-inline"> Please enter your Firstname </span>
+      </div>
+      <div class="form-group" ng-class="{error: showValidationMessages && myform.lastname.$invalid }">
+        <label>LastName</label>
+        <input type="text" name="lastname" class="form-control" id="lastname" ng-model="userdetails.last_name" name="lastname"  required/>
+        <span ng-show="showValidationMessages && myform.lastname.$error.required" class="help-inline">Please enter your Lastname </span>
+      </div>
+      <div class="form-group" ng-class="{error: showValidationMessages && myform.company.$invalid }">
+        <label>CompanyName</label>
+        <input type="text" name="company" class="form-control" ng-model="userdetails.company_name" id="companyname" name="companyname" required/>
+        <span ng-show="showValidationMessages && myform.company.$error.required" class="help-inline"> Please enter your CompanyName</span>
+      </div>
+      <div class="form-group" ng-class="{error: showValidationMessages && myform.mobile.$invalid }"> 
+        <label>PhoneNumber</label>
+        <input type="text" name="mobile" class="form-control" ng-model="userdetails.mobile" id="mobilenumber" numbers-only="numbers-only" ng-maxlength="10" ng-minlength="10" required />
+        <span ng-show="showValidationMessages && myform.mobile.$error.required" class="help-inline"> Please enter your Phone Number </span>
+        <span ng-show="showValidationMessages && myform.mobile.$error.minlength" class="help-inline"> Please Enter 10 Numbers </span>
+        <span ng-show="showValidationMessages && myform.mobile.$error.maxlength" class="help-inline"> Please Enter 10 Numbers </span>
+      </div>
+          <label>User Type</label>
+           <div class="form-group" ng-class="{error: showValidationMessages && myform.usertype.$invalid }">
+             <select name="usertype" ng-model="userdetails.user_type" class="form-control"  required>
+            <option value="">Select User Type</option>
+            <option value="1">Property Seller</option>
+            <option value="2"> Property Sekeer</option>
+        </select>
+        <span ng-show="showValidationMessages && myform.usertype.$error.required" class="help-inline"> Please Select User Type</span>
+      </div>
+
+     <!-- <upload-button
+          class="btn btn-primary btn-upload"
+          url="/upload"
+          on-success="onGlobalSuccess(response)"
+          
+        ></upload-button> 
+        <h4 class="m-lg">Uploaded files</h4>
+    <div class="list-group">
+      <a class="list-group-item" ng-href="/images/{{file.data.name}}" download ng-repeat="file in uploads">
+        <img ng-src="/images/{{file.data.name}}">
+      </a>
+
+    </div> -->
+
+    <div>Select an image file: <input type="file" id="fileInput" onchange="angular.element(this).scope().uploadFile(this.files[0])" check-file-size="" /></div>
+  <div class="cropArea">
+    <img-crop image="myImage" area-type="square" result-image="myCroppedImage"></img-crop>
+  </div>
+  <div>Cropped Image:</div>
+  <div><img id="img"  ng-src="{{myCroppedImage}}" />
+
+  </div>
+   <span style="color:red" ng-show="editprofile">Profile Has Been Updated</span>
+   <div></div>
+      <button type="button" class="btn btn-default" ng-click= "updateuser(myform)">Update Account</button>
+      <div class="form-group">
+         <input type="hidden" name="usertypeid"  ng-model="userdetails.username" / >
+
+         <input type="hidden" name="imagename"  ng-model="userdetails.imagename" value="{{uploads[0].data.name}} " / >
+      </div>
+                
+    </form>
+  </modal>
+<!--
+<div class="slider" >
+  <h1> User Profile </h1>
+  <h4><a ng-click="editprof()" href=""> Edit Profile </a> </h4>
+</div>
+-->
+<ul class="nav nav-tabs left-tab-profile">
+
+      <li ng-class="tabClass(tab)" ng-repeat="tab in tabs" ><a href="{{tab.link}}" ng-click="setSelectedTab(tab)">{{tab.label}}</a></li>
+</ul>
+    <div ng-view class="col-xs-9 pull-right padding-right0">
+    
+    
+    </div>
+</div>
+
+
+
+<!--Outer wrapper Ends-->
+
+<!--footer Starts-->
+<footer ng-include="'../templates/footer.html'" ng-controller="commonCtrl" ></footer>
+<!--footer Starts-->
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2015.2.902/styles/kendo.common-material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2015.2.902/styles/kendo.material.min.css" />
+<script src="https://kendo.cdn.telerik.com/2015.2.902/js/kendo.all.min.js"></script>
+<script type="text/javascript" src="js/userprofileApp.js"></script>
+<script type="text/javascript" src="js/routers/userprofileRouter.js"></script>
+<script type="text/javascript" src="js/controllers/userprofileController.js"></script>
+
+<script type="text/javascript" src="js/lib/ng-img-crop.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/lib/ng-file-upload.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/lib/ng-file-upload-shim.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" src="js/controllers/contactController.js"></script> -->
+<script type="text/javascript" src="js/controllers/contactedpropertiescontroller.js"></script>
+<script type="text/javascript" src="js/controllers/alertcontroller.js"></script>
+<script type="text/javascript" src="js/controllers/recentlyviewedController.js"></script>
+<script type="text/javascript" src="js/controllers/userprofiletabcontroller.js"></script>
+<script type="text/javascript" src="js/controllers/profilechangeController.js"></script>
+<script type="text/javascript" src="js/controllers/listyourspaceController.js"></script>
+<script type="text/javascript" src="js/controllers/commonCtrl.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<script type="text/javascript" src="js/lib/jquery.mCustomScrollbar.min.js"></script>
+<!-- Autocomplete directive for rant page -->
+<script type="text/javascript" src="js/services/ngAutocomplete.js"></script>
+<!-- flashmessage -->
+<script type="text/javascript" src="/js/lib/angular-flash.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.min.js"></script>
+<script src="js/lib/slider/angular-touch.js"></script>
+<script src="js/lib/slider/angular-carousel.min.js"></script>
+ <link href="js/lib/slider/angular-carousel.min.css" type="text/css" rel="stylesheet" /> 
+ 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+
+</body>
+</html>

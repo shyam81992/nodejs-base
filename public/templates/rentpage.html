@@ -1,0 +1,168 @@
+<div class="slider search-rent" ng-show="sec_one"  ng-mouseup="mouseupFunction($event)" ng-style="rent_banner_image">
+  <div class="container">
+    <div class="row">
+       <h1 ng-bind-html="to_trusted(rent_banner_logo)">{{rent_banner_logo}}</h1>    
+     
+      <p>{{rent_banner_logo_sub}}</p>
+     
+     <div class="search-locality">
+      <div class="col-xs-12 col-sm-10 col-left-space-0">
+          <div class="row">
+
+              <div class="col-xs-12 col-sm-6 divider search-input-wrap buy-loc" ng-class="{bordercolor: focusedinput}">
+                <input class="search-input form-control" id="location" auto-complete minlength='0' ui-items="names" ng-model="locality" placeholder="Search by locality or landmark" ng-change="autocompleterecent()" ng-init="focusedinput = false" ng-focus="focusedinput = true" ng-blur="focusedinput = false;checkValue($event)"
+                tabindex="1">
+
+                  <!-- <input class="search-input form-control" type="text" name="locality" ng-model="locality" ng-autocomplete="result3" details="details3" options="options3" placeholder="Search by locality or landmark"> -->
+              </div>
+              <div class="col-xs-12 col-sm-6 serch-blk2">
+                  <div class="row">
+                      <div class="col-xs-6 divider search-select-wrap search-select-categ pad-zero" >
+                            <select id="selectcategories" ng-model="categories" ng-options="space for space in space_type track by space " selectoption >
+                              <option value="">All Categories</option>
+                             </select>
+                      </div>
+                      <div class="col-xs-6 search-select-wrap search-select-sqft pad-zero">
+        
+                    <!--  <select ng-model="spaceArea" selectoption >
+                       <option value="">Square feet</option>
+                       <option value="1"> Less Than 1000</option>
+                        <option value="1000">1000+</option>
+                         <option value="2000">2000+</option>
+                         <option value="3000">3000+</option>
+                         <option value="4000">4000+</option>
+                         <option value="5000">5000+</option>
+                          <option value="6000">6000+</option>
+                           <option value="7000">7000+</option>
+                           <option value="8000">8000+</option>
+                           <option value="9000">9000+</option>
+                           <option value="10000">10000+</option>
+                     </select> -->
+                          
+                                        <div class="filter-container">
+                  <div class="page filter" ng-click="showHideArea()" style="height: 28px;" ng-if="!squarefeet_state">
+                     <span class="text square-feet-filter"  ng-class="{'selected-select' : IsVisible2,'tyrt':IsVisible2,'close4' :!IsVisible2 }" >Square Feet</span>
+                  </div>
+                  <div class="page filter" ng-click="showHideArea()" style="height: 28px;" ng-if="squarefeet_state">
+                     <span class="text square-feet-filter  selected-select" ng-class="{'tyrt':IsVisible2,'close4' :!IsVisible2 }">{{getArea()}} Sqft</span>
+                    <span class="icon-arrow-down filter-icon-down "  ng-class="{'active-arrow':IsVisible2,'tyrt':IsVisible2,'close4' :!IsVisible2 }"></span>
+                  </div>
+                  <div class="dropdown-menu-arrow"></div>
+                  <div class="filter-options-dropdown square-feet-dropdown page-squarefilter" ng-show="IsVisible2">
+                            <div class="range-header">
+                                <input ng-class="{'success-feild' : lower2}" class="box lower-box-area page" placeholder="Min" tabindex="0" data-value="0" data-sample="lower" ng-model="lower2" ng-blur="areaFilter();" number-only ng-focus='areatrans(true);squarefeet_state=true'
+                                ng-keypress="($event.charCode==13)?focusNextinput():return">
+                                <div class="dash-filter"></div>
+                                <input ng-class="{'success-feild' : upper2}" class="box upper-box-area page selected" placeholder="Max" tabindex="0" data-value="0" data-sample="upper" ng-model="upper2" ng-blur="areaFilter();" ng-keypress="($event.charCode==13)?areaFilter(true):return;($event.charCode==13)?focusNext():return" ng-focus='areatrans(false);squarefeet_state=true' number-only>
+                            </div>
+                            <div class="range-list-wrapper">
+                              <ul class="lower-list-area range-list" data-sample="lower">
+                                    <li class="range-item" ng-repeat="data in square_feet" role="button" data-value="{{data}}" data-sample="lower" ng-click="areamin($event)" ng-class="{'record-highlight': $index == focusIndex1 }">
+                                    {{data}}
+                                    </li>
+                                </ul>
+                                <ul class="upper-list-area range-list  text-right" style="display:none;" data-sample="upper">
+                                    <!-- <li class="range-item selected current-item" data-value="10000" data-sample="upper">
+                                    <span class="icon-rupee"></span>
+                                    10.0K
+                                    </li> -->
+                                    <li class="range-item" ng-repeat='data in areamaxlist' role="button" ng-click="areamax($event)" data-value="{{data}}" data-sample="upper" ng-class="{'record-highlight': $index == focusIndex2 }">
+                                    <span class="icon-rupee"></span>
+                                    {{data}}
+                                    </li>                             
+                                    <li class="range-item" ng-click="areamax($event)" data-value="" data-any="true" data-sample="upper" ng-class="{'record-highlight': 5 == focusIndex2 }">
+                                    Any value
+                                    </li>
+                                </ul>
+                            </div>
+                      </div>
+              </div>
+                      
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-2 col-space-0">
+          <a href="" id="search" class="search-btn" ng-click="searchData()" >Search</a>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+
+<!--feature-property-->
+  <div class="preferred-choice" >
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center" ng-bind-html="to_trusted(preferred_choice_logo)">{{preferred_choice_logo}}</h2>
+       <div class="row">
+        <div class="col-xs-6 col-md-4" ng-repeat="preferred_choice in preferred_choice track by $index | orderBy:'order' ">
+          <div class="thumbnail">
+            <img ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{preferred_choice.images}}" 
+            alt="Verified Venues">
+            <div class="caption">
+              <h3 class="text-center" ng-bind-html="to_trusted(preferred_choice.logo)">{{preferred_choice.logo}}</h3>
+              <p class="text-center" ng-bind-html="to_trusted(preferred_choice.text)">{{preferred_choice.text}}</p>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+      </div>
+    </div>
+  </div>
+<!--feature-property-->
+
+<!--contact-bar-->
+<div class="contact-bar"  ng-show="sec_three" >
+  <div ng-bind-html="to_trusted(rent_section_three_logo)">
+    {{rent_section_three_logo}}
+  </div>
+<div class="row">
+    <a  class="btn btn-primary btn-lg" ng-click="contactrefresh()" data-toggle="modal" data-target="#contactus">contact us</a>
+</div>
+ 
+</div>
+<!--contact-bar-->
+
+
+<!--news-->
+ <div class="news-wrapper" >
+    <div class="container">
+      <div class="news-img-slider" >   
+           <div my-post-repeat-directive class="news-img-bx" ng-repeat="sev in seven | orderBy:order ">
+            <a href="">
+            <img ng-src="{{::urladmin.admin_url}}app/webroot/img/cms_images/{{sev.images}}">
+           </a>
+       </div>
+                   
+      </div>
+    </div>
+  </div>
+<!--news-->
+
+
+<div class='contactform' ng-include="'../templates/contact.html'" ng-controller="contactController"></div>
+<div  flash-message="5000" ></div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+//$('.slider').css('overflow','visible');
+    
+$(".slider.search-rent").on('click','.search-select-categ .nice-select ul li',function(event){
+$( ".page.filter" ).trigger( "click" );
+setTimeout(function() {$( ".lower-box-area.page" ).focus();$('.search-select-categ .nice-select').removeClass('open'); 
+},10);
+  //event.stopPropagation();
+});
+$(".slider.search-rent").on('click','.nice-select ul li',function(event){
+  
+   $(this).parent().parent().addClass('selected-select');
+});
+
+});
+</script>

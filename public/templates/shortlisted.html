@@ -1,0 +1,151 @@
+
+<div class="">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            <h3 class="font-icon shortlist-head">Shortlisted  <button role="button" class="but-sync pull-right"  ng-click="callSync()" ng-if="shortlistcountlocal" >sync</button></h3> 
+            <div class="shortlist-blk clearfix" ng-repeat="data in shortlistData1" my-Directivshortlisted > 
+            <a href="">
+              <i ng-click="delfromshortlist(data.master_object_id._id,
+                        data._id)" class="close-icon">
+              </i>
+            </a>
+        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 padding-0 padding20 class-imgmap" > <a class="shortlist-img" href="" ng-click="getalert(data.master_object_id.master_line_id)">
+          <img ng-if="data.master_object_id.Image_URL_1__c == null" ng-src="images/no-img.png" alt="shortlisted-property">
+          <img ng-if="data.master_object_id.Image_URL_1__c != null"
+          ng-src="{{data.master_object_id.Image_URL_1__c}}" alt="shortlisted-property">
+
+        </a> </div>
+        <div class="col-xs-12 col-md-8 col-sm-7 col-lg-9 class-imgdetails">
+          <section class="shotlisted-space">
+            <section class="shortlisted-border" ng-click="getalert(data.master_object_id.master_line_id)" style="cursor:pointer">
+              <h1>{{data.master_object_id.Total_Area_in_Sq_Ft__c}} SQFT {{data.master_object_id.line_item_category}} {{data.master_object_id.master_object_id.Master_Type__c}}</h1>
+              <p class="shortlisted-location">{{data.master_object_id.Location__c}},{{data.master_object_id.City__c}},{{data.master_object_id.State__c}}</p>
+              <div class="row">
+                <p class="col-xs-12 col-sm-6 col-md-4 col-lg-3"><span class="shorlisted-square">{{data.master_object_id.Total_Area_in_Sq_Ft__c}}&nbspSqft</span></p>
+                <p class="col-xs-12 col-sm-6 col-md-8 col-lg-9" ng-if="data.master_object_id.Type_of_Transaction__c=='Rent'">
+                  <span class="shorlisted-price">Rent :&nbsp;&nbsp;</span>
+                  <span class="price-display" ng-if= "data.master_object_id.line_item_category == 'Business Center' || data.master_object_id.line_item_category == 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.master_object_id.Total_Rent__c}} </i><sub>/ Workstation</sub>
+                  </span>
+                  <span class="price-display" ng-if= "data.master_object_id.line_item_category != 'Business Center' 
+                  && data.master_object_id.line_item_category != 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.master_object_id.Total_Rent__c}} </i>
+                  <sub>/ Month</sub>
+                  </span>
+                </p>
+
+                <p class="col-xs-12 col-sm-6 col-md-8 col-lg-9" ng-if="data.master_object_id.Type_of_Transaction__c=='Buy'">
+                  <span class="shorlisted-price">Price :&nbsp;&nbsp;</span>
+                  <span class="price-display" ng-if= "data.master_object_id.line_item_category == 'Business Center' || data.master_object_id.line_item_category == 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.master_object_id.Total_Price__c}} </i><sub>/ Workstation</sub>
+                  </span>
+                  <span class="price-display" ng-if= "data.master_object_id.line_item_category != 'Business Center' 
+                  && data.master_object_id.line_item_category != 'Co-Working Space' " class="property-rent-or-buy-price"><i class="rs font-icon ">{{data.master_object_id.Total_Price__c}} </i>
+                  
+                  </span>
+                </p>
+              </div>
+            </section>
+            <div class="row mob-shortlist-icons clearfix">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5 pull-right margin-bottom10">
+             <div class="comparenow" ng-if="comparestate(data.master_object_id._id)" data-toggle="tooltip" title="Add to compare" role='button' ng-click='addcompare(data.master_object_id)'>compare</div>
+                        <div class="comparenow cmpadded" ng-if="!comparestate(data.master_object_id._id)" data-toggle="tooltip" title="Remove from compare" role='button' ng-click='removecompare(data.master_object_id._id)'>compared</div>
+              <a class="btn-common btn-common-shortlist pull-right" ng-click="contactrefresh(data.master_object_id._id)" data-toggle="modal" data-target="#contactus">Contact</a></div>
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-left">
+<!--
+                <ul class="short-listed-links">
+                <li><a href=""socialshare
+                                    socialshare-provider="facebook"
+                                    socialshare-text="{{data.master_object_id.Total_Area_in_Sq_Ft__c}} SQFT {{data.master_object_id.line_item_category}} {{data.master_object_id.master_object_id.Master_Type__c}}"
+                                    socialshare-url="{{data.shareurl}}"
+                  ><img src="../images/shortlist-facebook-icon.png"></a></li>
+                <li>
+                  <a href="" socialshare
+                                    socialshare-provider="linkedin"
+                                    socialshare-text="{{data.master_object_id.Total_Area_in_Sq_Ft__c}} SQFT {{data.master_object_id.line_item_category}} {{data.master_object_id.master_object_id.Master_Type__c}}"
+                                    socialshare-url="{{data.shareurl}}">
+                                    <img src="../images/shortlist-linkedin-icon.png">
+                                            </a>
+                </li>
+                <li><a href="" socialshare
+                                              socialshare-provider="twitter"
+                                              socialshare-url="{{data.shareurl}}">
+                  <img src="../images/shortlist-twitter-icon.png"></a></li>
+                </ul>
+-->
+                <div class="socila-footer">
+              <ul>
+                  <li class="fb-socila">
+                      <a href=""socialshare
+                                    socialshare-provider="facebook"
+                                    socialshare-text="{{data.master_object_id.Total_Area_in_Sq_Ft__c}} SQFT {{data.master_object_id.line_item_category}} {{data.master_object_id.master_object_id.Master_Type__c}}"
+                                    socialshare-url="{{data.shareurl}}"
+                         > FB</a>
+                  </li> 
+                 <li class="in-socila">
+                      <a href="" socialshare
+                                    socialshare-provider="linkedin"
+                                    socialshare-text="{{data.master_object_id.Total_Area_in_Sq_Ft__c}} SQFT {{data.master_object_id.line_item_category}} {{data.master_object_id.master_object_id.Master_Type__c}}"
+                         socialshare-url="{{data.shareurl}}">linked in </a>
+                 </li>  
+                 <li class="tw-socila">
+                      <a href="" socialshare
+                                              socialshare-provider="twitter"
+                         socialshare-url="{{data.shareurl}}"> tweeter</a>
+                 </li>
+               
+                    
+              </ul>
+              </div>  
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="not-avb-property" ng-if="data.master_object_id.Status__c=='Available'">
+                <div class="omiji"></div>
+                 <h1>Sorry this property is no longer available..</h1>
+        </div>
+      </div>
+        </div>
+        </div>
+        <div ng-show="(!shortlistData1.length)&&shortlistData1" class="alert alert-danger">
+                No shortlisted properties Available
+        </div>
+       <div class="popup-compare " ng-class="{'popup-compare-enable' : comparearr.length }">
+                    <h3  ng-click="changeClass($event)" >Compare <i>{{comparearr.length}}</i></h3>
+                     
+                    <ul  scrollevent2>
+                    <li class="content-list" ng-repeat="data in comparearr" ng-show='!compareloader2'>
+                    <div class="img-lst" ng-show='!compareloader[data._id]'>
+                    <img ng-if="data.Image_URL_1__c == null" ng-src="images/no-img.png" style="max-width:100%" alt="Office Space" width="70" height="60">
+                    <img ng-if="data.Image_URL_1__c != null" ng-src="{{data.Image_URL_1__c}}"  alt="Office Space" style="max-width:100%" width="70" height="60">
+                    </div>    
+                    <div class="right-conto" ng-show='!compareloader[data._id]'>
+                    <a href="#"><h4>{{data.Total_Area_in_Sq_Ft__c}} SQFT {{data.line_item_category}} {{data.master_object_id.Master_Type__c}}</h4></a>
+                    <p>{{data.Location__c}},{{data.City__c}},{{data.State__c}}</p>
+                    <div class="price-details">
+                    <span class="sqft col-xs-5 pad-zero">{{data.Total_Area_in_Sq_Ft__c}} Sqft</span>
+                    <span class="prc col-xs-6 pad-left rs">{{data.Total_Rent__c}}</span>
+                    <span class="remov col-xs-1 pad-zero" role='button' ng-click='removecompare(data._id)'> </span>
+                    </div>    
+                    </div>
+                    <img src="images/ajax-loader.gif" ng-show='compareloader[data._id]'> 
+                    </li>
+                    <img src="images/ajax-loader.gif" ng-show='compareloader2' class="loader-cmp">    
+                    </ul>
+                     <div class="btn-div">
+                      <input type="button" class="remo-cls pull-left" ng-click='removeAllCompared()'  value="Remove All">   
+                        <input type="button" class="remo-cls cmpr pull-right" value="Compare" ng-click="showcompare()">       
+                      </div>     
+                  </div>
+                     <div class="overly-cmp"></div>
+                
+      <div class='contactform'ng-include="'../templates/contact.html'" ng-controller="contactController">
+      </div>       
+
+
+<script>
+    $(document).ready(function(){
+        $(".mobile-user-tab").click(function(){
+            $(".user-tab").toggleClass("hidden-xs hidden-sm");
+        });
+    });
+</script>
+
